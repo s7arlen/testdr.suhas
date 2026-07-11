@@ -38,18 +38,23 @@ export default function Layout({ children }) {
   useEffect(() => {
     if (!footerRef.current) return;
     
-    const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        setFooterHeight(entry.target.offsetHeight);
-      }
-    });
-    
+    const updateHeight = () => {
+      if (!footerRef.current) return;
+      const baseHeight = footerRef.current.offsetHeight;
+      // On mobile (<768px), add 70px for the bottom-nav bar so footer is fully visible
+      const isMobile = window.innerWidth < 768;
+      setFooterHeight(baseHeight + (isMobile ? 70 : 0));
+    };
+
+    const observer = new ResizeObserver(updateHeight);
     observer.observe(footerRef.current);
+    updateHeight();
     
-    // Also set initial height immediately if possible
-    setFooterHeight(footerRef.current.offsetHeight);
-    
-    return () => observer.disconnect();
+    window.addEventListener('resize', updateHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateHeight);
+    };
   }, [children, location.pathname]);
 
   return (
@@ -63,6 +68,8 @@ export default function Layout({ children }) {
           zIndex: 10,
           background: 'var(--bg-primary)',
           boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+          // On mobile, add 70px (bottom-nav height) on top of footer height
+          // so the fully revealed footer clears the bottom nav bar
           marginBottom: footerHeight > 0 ? `${footerHeight}px` : 'auto',
           minHeight: '100vh',
           display: 'flex',

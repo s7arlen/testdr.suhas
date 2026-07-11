@@ -166,7 +166,7 @@
 /* Ensure content is not hidden behind bottom nav on mobile */
 @media (max-width: 767px) {
   .app-container {
-    padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 0;
   }
   .hide-mobile {
     display: none !important;
@@ -297,7 +297,8 @@
     justify-content: center;
     text-align: center;
     gap: 1.5rem;
-    padding-bottom: 30px; /* Reduced from 90px to remove unnecessary empty space */
+    /* Extra bottom padding so content clears the mobile bottom nav bar */
+    padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   }
   
   .footer-links {
