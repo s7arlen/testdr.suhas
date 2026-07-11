@@ -148,7 +148,7 @@ export default function Layout({ children }) {
         </main>
       </div>
 
-      {/* FIXED FOOTER - The "Curtain" sits behind the main content */}
+      {/* FIXED FOOTER */}
       <footer 
         ref={footerRef}
         style={{ 
@@ -158,90 +158,74 @@ export default function Layout({ children }) {
           right: 0,
           zIndex: 0,
           background: 'var(--bg-secondary)', 
-          borderTop: '1px solid var(--border-subtle)',
           overflow: 'hidden'
         }}
       >
+        {/* Gold accent top line */}
+        <div style={{ height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)' }} />
+
         <div className="container footer-top">
           
-          <div>
-            <div className="text-eyebrow" style={{ marginBottom: '1rem' }}>Excellence in Surgery</div>
-            <h2 className="h-2" style={{ marginBottom: '1.5rem' }}>Ready to discuss your care?</h2>
-            <p className="text-body" style={{ marginBottom: '2.5rem', maxWidth: '400px' }}>
-              Schedule a consultation with Dr. Suhas for expert advice, precise planning, and compassionate support.
+          {/* Col 1 — Brand + CTA */}
+          <div className="footer-brand-col">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
+              <Activity size={22} style={{ color: 'var(--accent-gold)' }} />
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.2rem' }}>Dr. Suhas S Kumar</span>
+            </div>
+            <p className="text-body" style={{ marginBottom: '1.75rem', maxWidth: '340px', fontSize: '0.9rem', lineHeight: 1.7 }}>
+              Advanced surgical care with compassion. Specialising in laparoscopy, hernia repair, and complex abdominal procedures.
             </p>
-            <Link to="/contact" className="btn btn-primary">
-              Book a Consultation <ArrowRight size={18} />
+            <Link to="/contact" className="btn btn-primary" style={{ fontSize: '0.875rem', padding: '0.65rem 1.4rem' }}>
+              Book Consultation <ArrowRight size={16} />
             </Link>
           </div>
 
+          {/* Col 2 — Contact & Locations */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             <div>
-              <h3 className="h-3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Contact Details</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <a href="tel:9035942513" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-                  <Phone size={18} className="nav-brand-icon" /> +91 90359 42513
+              <div className="footer-section-label">Contact</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                <a href="tel:9035942513" className="footer-contact-link">
+                  <span className="footer-icon-wrap"><Phone size={15} /></span>
+                  +91 90359 42513
                 </a>
-                <a href="mailto:suhassk2@gmail.com" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-                  <Mail size={18} className="nav-brand-icon" /> suhassk2@gmail.com
+                <a href="mailto:suhassk2@gmail.com" className="footer-contact-link">
+                  <span className="footer-icon-wrap"><Mail size={15} /></span>
+                  suhassk2@gmail.com
                 </a>
               </div>
             </div>
             
             <div>
-              <h3 className="h-3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Our Locations</h3>
+              <div className="footer-section-label">Locations</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-                  <MapPin size={18} className="nav-brand-icon" style={{ flexShrink: 0, marginTop: '4px' }} />
-                  <span><strong>Deepak Hospital:</strong><br/>33rd Cross Rd, 7th Block, Jayanagar, Bengaluru</span>
+                <div className="footer-contact-link" style={{ alignItems: 'flex-start' }}>
+                  <span className="footer-icon-wrap" style={{ marginTop: '2px' }}><MapPin size={15} /></span>
+                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Deepak Hospital</strong><br/>33rd Cross Rd, 7th Block, Jayanagar</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-                  <MapPin size={18} className="nav-brand-icon" style={{ flexShrink: 0, marginTop: '4px' }} />
-                  <span><strong>Dermapulse Clinic:</strong><br/>719/25, 10th A Main Rd, 4th Block, Jayanagar, Bengaluru</span>
+                <div className="footer-contact-link" style={{ alignItems: 'flex-start' }}>
+                  <span className="footer-icon-wrap" style={{ marginTop: '2px' }}><MapPin size={15} /></span>
+                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Dermapulse Clinic</strong><br/>719/25, 10th A Main, 4th Block, Jayanagar</span>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Col 3 — Social */}
           <div>
-            <h3 className="h-3" style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Connect With Us</h3>
-            <p className="text-body" style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>
-              Follow Dr. Suhas on social media for regular medical updates and surgery advisories.
+            <div className="footer-section-label">Follow Us</div>
+            <p className="text-body" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', lineHeight: 1.6 }}>
+              Stay connected for surgical updates and patient stories.
             </p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               {[
-                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>, href: 'https://facebook.com' },
-                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>, href: 'https://instagram.com' },
-                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>, href: 'https://twitter.com' },
-                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>, href: 'https://linkedin.com' },
-              ].map((social, idx) => (
-                <a 
-                  key={idx} 
-                  href={social.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  style={{
-                    background: 'var(--bg-primary)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: '50%',
-                    width: '40px',
-                    height: '40px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--text-secondary)',
-                    transition: 'all 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent-gold)';
-                    e.currentTarget.style.color = 'var(--accent-gold)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                    e.currentTarget.style.color = 'var(--text-secondary)';
-                  }}
-                >
-                  {social.icon}
+                { label: 'FB', href: 'https://facebook.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },
+                { label: 'IG', href: 'https://instagram.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> },
+                { label: 'TW', href: 'https://twitter.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> },
+                { label: 'LI', href: 'https://linkedin.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> },
+              ].map((s, i) => (
+                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label={s.label}>
+                  {s.icon}
                 </a>
               ))}
             </div>
@@ -249,25 +233,27 @@ export default function Layout({ children }) {
           
         </div>
         
-        <div style={{ borderTop: '1px solid var(--border-subtle)', padding: '24px 0' }}>
+        {/* Footer Bottom Bar */}
+        <div className="footer-bottom-bar">
           <div className="container footer-bottom">
-            <span className="footer-copyright">&copy; {new Date().getFullYear()} Dr. Suhas S Kumar. All rights reserved.</span>
-            
-            {/* Credit Line */}
-            <div className="footer-credits credit-line">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <span style={{ whiteSpace: 'nowrap' }}>Powered by</span>
-                <span className="appvertex-badge">A</span>
-                <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>Appvertex</span>
-              </div>
-              <span className="hide-mobile" style={{ margin: '0 0.2rem' }}>&middot;</span>
-              <span style={{ whiteSpace: 'nowrap' }}>Built by Leston & Lenstar</span>
+            <div className="footer-links">
+              <Link to="/services">Services</Link>
+              <Link to="/gallery">Gallery</Link>
+              <Link to="/contact">Contact</Link>
             </div>
 
-            <div className="footer-links">
-              <Link to="/services" style={{ color: 'inherit' }}>Services</Link>
-              <Link to="/gallery" style={{ color: 'inherit' }}>Gallery</Link>
-              <Link to="/contact" style={{ color: 'inherit' }}>Contact</Link>
+            <div className="footer-credits credit-line">
+              <span>Powered by</span>
+              <span className="appvertex-badge">A</span>
+              <span style={{ fontWeight: 600 }}>Appvertex</span>
+              <span className="footer-dot">·</span>
+              <span>Built by Leston &amp; Lenstar</span>
+            </div>
+
+            <span className="footer-copyright">© {new Date().getFullYear()} Dr. Suhas S Kumar. All rights reserved.</span>
+          </div>
+        </div>
+      </footer>
             </div>
           </div>
         </div>

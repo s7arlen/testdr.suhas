@@ -244,10 +244,75 @@
 
 /* Footer Styles */
 .footer-top {
-  padding: 80px 0;
+  padding: 72px 0 48px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 60px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 52px;
+}
+
+.footer-brand-col {}
+
+.footer-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.footer-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.25s ease;
+}
+
+.footer-contact-link:hover {
+  color: var(--text-primary);
+}
+
+.footer-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(242, 227, 198, 0.06);
+  border: 1px solid rgba(242, 227, 198, 0.1);
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.footer-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-social-btn:hover {
+  background: rgba(242, 227, 198, 0.1);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  box-shadow: 0 0 16px rgba(242, 227, 198, 0.15);
+  transform: translateY(-2px);
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 0;
 }
 
 .footer-bottom {
@@ -255,73 +320,100 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
 }
 
 .footer-links {
   display: flex;
   gap: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
 }
 
 .credit-line {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.footer-dot {
+  opacity: 0.4;
+  margin: 0 0.1rem;
 }
 
 .appvertex-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 4px;
   border: 1px solid var(--text-muted);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 700;
   line-height: 1;
 }
 
+.footer-copyright {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+/* Mobile footer overrides */
 @media (max-width: 767px) {
   .footer-top {
-    padding: 40px 0;
-    gap: 40px;
+    padding: 36px 0 28px;
+    gap: 32px;
+    grid-template-columns: 1fr;
   }
-  
+
+  .footer-bottom-bar {
+    padding: 16px 0;
+    /* Extra bottom padding to clear the mobile bottom nav */
+    padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  }
+
   .footer-bottom {
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 1.5rem;
-    /* Extra bottom padding so content clears the mobile bottom nav bar */
-    padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+    align-items: flex-start;
+    gap: 1rem;
   }
-  
+
   .footer-links {
-    order: -2;
-    width: 100%;
-    justify-content: center;
-    font-size: 1rem;
+    order: -1;
+    font-size: 0.9rem;
     font-weight: 500;
   }
 
-  .footer-credits {
-    order: -1;
-    flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.25rem 0;
+  .credit-line {
+    order: 0;
+    padding: 0.75rem 0;
     border-top: 1px solid rgba(255,255,255,0.05);
     border-bottom: 1px solid rgba(255,255,255,0.05);
     width: 100%;
   }
 
   .footer-copyright {
-    order: 0;
-    font-size: 0.75rem;
-    opacity: 0.7;
+    order: 1;
+    font-size: 0.72rem;
+    opacity: 0.65;
+  }
+
+  .footer-dot {
+    display: none;
   }
 }
