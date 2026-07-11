@@ -254,10 +254,7 @@ export default function Layout({ children }) {
           </div>
         </div>
       </footer>
-            </div>
-          </div>
-        </div>
-      </footer>
+
 
       {/* Premium Bottom Navigation for Mobile */}
       {/* We add z-index to make sure it floats over the fixed footer */}
