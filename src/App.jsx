@@ -10,7 +10,7 @@ import Hero from './components/Hero';
 import DoctorStory from './components/DoctorStory';
 import AboutSection from './components/AboutSection';
 import ServicesEditorial from './components/ServicesEditorial';
-import ServicesMagazineGrid from './components/ServicesMagazineGrid';
+import ServicesDeck from './components/ServicesDeck';
 import SpecializationsFilmStrip from './components/SpecializationsFilmStrip';
 import Timeline from './components/Timeline';
 import Testimonials from './components/Testimonials';
@@ -182,7 +182,7 @@ function ServicesPage() {
   return (
     <PageWrapper>
       <div style={{ paddingTop: '80px' }}>
-        <ServicesMagazineGrid />
+        <ServicesDeck />
       </div>
     </PageWrapper>
   );
