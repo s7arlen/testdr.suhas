@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+
+const testimonials = [
+  { quote: "I felt informed, calm and supported throughout the entire process. Dr. Kumar made a difficult decision feel manageable and clear.", author: 'Priya N.', meta: 'Gallbladder surgery · Bengaluru' },
+  { quote: "The recovery was smoother than expected, and the guidance made a difficult decision feel manageable. A truly premium experience.", author: 'Raghav M.', meta: 'Hernia repair · Jayanagar' },
+  { quote: "From the very first consultation, I knew I was in the hands of a master. The attention to detail and personal care is unmatched.", author: 'Anita S.', meta: 'Thyroid care · Indiranagar' }
+];
+
+export default function Testimonials() {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+
+  return (
+    <section className="section" style={{ backgroundColor: 'var(--bg-tertiary)', borderRadius: '48px', margin: '0 1rem', overflow: 'hidden' }}>
+      <div className="container" style={{ position: 'relative', padding: '4rem 0' }}>
+        
+        <Quote size={120} color="var(--border-subtle)" style={{ position: 'absolute', top: 0, left: 0, zIndex: 0 }} />
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+          <div className="text-eyebrow" style={{ marginBottom: '3rem' }}>Patient Stories</div>
+          
+          <div style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                <h3 className="h-2" style={{ fontWeight: 400, lineHeight: 1.4, marginBottom: '2rem' }}>
+                  "{testimonials[index].quote}"
+                </h3>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.125rem' }}>{testimonials[index].author}</div>
+                  <div className="text-body" style={{ fontSize: '0.875rem', marginTop: '0.25rem' }}>{testimonials[index].meta}</div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem' }}>
+            <button onClick={prev} className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
+              <ChevronLeft size={24} />
+            </button>
+            <button onClick={next} className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
+              <ChevronRight size={24} />
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

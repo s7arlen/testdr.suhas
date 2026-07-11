@@ -1,0 +1,870 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Suhas S Kumar | Premium Surgical Experience</title>
+  <meta name="description" content="Dr. Suhas S Kumar offers advanced general and laparoscopic surgery with a calm, premium, patient-first experience in Bangalore." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=General+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400..700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js"></script>
+  <style>
+    :root {
+      --navy: #07111E;
+      --gold: #D9C28F;
+      --cream: #F8F6F2;
+      --white: #FFFFFF;
+      --blue: #95B5D7;
+      --text: #14233A;
+      --muted: #596575;
+      --line: rgba(7, 17, 30, 0.12);
+      --shadow: 0 20px 50px rgba(7,17,30,0.16);
+      --panel-shadow: 0 24px 70px rgba(7,17,30,0.12);
+      --radius-xl: 34px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(7,17,30,0.04) 1px, transparent 1px), radial-gradient(rgba(217,194,143,0.08) 1px, transparent 1px);
+      background-size: 18px 18px, 28px 28px;
+      background-position: 0 0, 9px 9px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -2;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.35), transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .page-shell { position: relative; isolation: isolate; }
+    .grain::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.28) 0.8px, transparent 0.8px);
+      background-size: 10px 10px;
+      opacity: 0.12;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+      z-index: 0;
+    }
+    .section { position: relative; padding: 118px 24px; }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s cubic-bezier(.2,.7,.2,1), transform 0.8s cubic-bezier(.2,.7,.2,1); }
+    .reveal-visible { opacity: 1; transform: none; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 42px; height: 1px; background: currentColor;
+      display: inline-block;
+    }
+    .headline {
+      font-family: 'General Sans', sans-serif;
+      font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-weight: 700;
+      margin: 0;
+      color: var(--navy);
+    }
+    .headline span { display: block; }
+    .headline .muted { color: transparent; -webkit-text-stroke: 1.4px rgba(7,17,30,0.7); }
+    .lead { font-size: 1.02rem; line-height: 1.8; color: var(--muted); max-width: 560px; }
+    .pill-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      position: relative; overflow: hidden;
+      border-radius: 999px; padding: 14px 22px;
+      border: 1px solid rgba(7,17,30,0.14); background: var(--navy);
+      color: var(--white); font-size: 0.84rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      box-shadow: 0 12px 35px rgba(7,17,30,0.18);
+      cursor: pointer;
+    }
+    .pill-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.16), transparent);
+      transform: translateX(-120%);
+      transition: transform 0.45s ease;
+    }
+    .pill-btn:hover::before { transform: translateX(120%); }
+    .pill-btn:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 16px 44px rgba(7,17,30,0.24); }
+    .pill-btn.secondary {
+      background: rgba(255,255,255,0.7);
+      color: var(--navy);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 8px 24px rgba(7,17,30,0.12);
+      backdrop-filter: blur(16px) saturate(1.1);
+      -webkit-backdrop-filter: blur(16px) saturate(1.1);
+      padding-left: 20px; padding-right: 20px; letter-spacing: 0.16em;
+    }
+    .pill-btn.secondary::after {
+      content: '';
+      position: absolute; left: 0; bottom: 4px; width: 100%; height: 1px; background: currentColor;
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+    }
+    .pill-btn.secondary:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(7,17,30,0.16);
+      border-color: rgba(217,194,143,0.35);
+    }
+    .pill-btn.secondary:hover::after { transform: scaleX(1); }
+    .nav-shell {
+      position: fixed; inset: 0 0 auto 0; z-index: 100; display: flex; justify-content: center; padding: 18px 16px 0; pointer-events: none;
+    }
+    .nav-bar {
+      pointer-events: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      width: min(92vw, 1180px); padding: 10px 14px 10px 20px; border-radius: 999px;
+      background: rgba(7,17,30,0.72); color: var(--white); border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(24px) saturate(1.15); box-shadow: 0 14px 40px rgba(7,17,30,0.16);
+      transition: padding 0.35s ease, transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+    }
+    .nav-bar.scrolled { padding: 8px 12px 8px 18px; background: rgba(7,17,30,0.9); border-color: rgba(217,194,143,0.25); }
+    .nav-brand { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-link { position: relative; padding: 8px 12px; border-radius: 999px; color: rgba(255,255,255,0.78); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s ease, background 0.2s ease; }
+    .nav-link::after {
+      content: ''; position: absolute; left: 10px; right: 10px; bottom: 4px; height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+    .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.1); color: var(--white); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--gold); color: var(--navy); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(217,194,143,0.24); }
+    .nav-menu {
+      display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.16); color: var(--white);
+      transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease;
+      margin-left: auto;
+    }
+    .nav-menu:hover { transform: translateY(-2px); background: rgba(255,255,255,0.16); border-color: rgba(217,194,143,0.28); }
+    .hero {
+      min-height: 72svh; min-height: 72vh; padding: 126px 24px 116px;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(217,194,143,0.16) 0%, transparent 30%),
+        linear-gradient(120deg, #fcfbf8 0%, #f5efe3 48%, #f8f4eb 100%);
+      overflow: hidden; position: relative; isolation: isolate;
+      --hero-dark: 0; --hero-copy-opacity: 1; --hero-image-scale: 1;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 42%, rgba(7,17,30,0.02));
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(7,17,30,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(7,17,30,0.05) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: linear-gradient(180deg, rgba(0,0,0,0.95), transparent 92%);
+      pointer-events: none; opacity: 0.3;
+      animation: drift 16s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+    .hero .container {
+      display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.9fr);
+      gap: clamp(28px, 3.8vw, 56px); align-items: center; min-height: calc(72vh - 120px); position: relative; z-index: 2;
+    }
+    .hero-copy { max-width: 640px; opacity: var(--hero-copy-opacity); transition: opacity 0.25s ease; }
+    .hero-title {
+      font-family: 'General Sans', sans-serif; font-size: clamp(3rem, 5.9vw, 6.7rem); line-height: 0.9;
+      font-weight: 700; letter-spacing: -0.045em; margin: 0 0 24px; color: var(--navy); display: grid; gap: 8px;
+    }
+    .hero-title .line { display: block; overflow: hidden; }
+    .hero-title .line span { display: inline-block; will-change: transform, opacity, clip-path; }
+    .hero-title .accent { color: var(--gold); font-weight: 700; }
+    .hero-visual { position: relative; display: flex; justify-content: flex-end; }
+    .hero-card {
+      position: relative; width: min(100%, 490px); aspect-ratio: 4 / 5.05; border-radius: 36px;
+      background: linear-gradient(140deg, rgba(7,17,30,0.96), rgba(19,34,51,0.92)); overflow: hidden;
+      box-shadow: 0 28px 70px rgba(7,17,30,0.18); border: 1px solid rgba(255,255,255,0.18);
+      transform: perspective(1400px) rotateY(-8deg) rotateX(2deg) scale(var(--hero-image-scale));
+      isolation: isolate;
+      padding: 1px;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute; inset: -20%;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.08) 22%, transparent 32%, rgba(217,194,143,0.12) 58%, transparent 74%, rgba(255,255,255,0.08) 86%, transparent 100%);
+      transform: translateX(-120%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    .hero-card img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+      opacity: 0; transform: scale(1.05) translateY(20px); filter: blur(18px) saturate(0.9);
+    }
+    .hero-card .hero-frost {
+      position: absolute; inset: 1px; overflow: hidden; border-radius: calc(36px - 1px);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.09) 28%, rgba(255,255,255,0.16) 59%, rgba(7,17,30,0.08) 100%);
+      border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(20px) saturate(0.82) brightness(1.05);
+      -webkit-backdrop-filter: blur(20px) saturate(0.82) brightness(1.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -24px 46px rgba(255,255,255,0.15);
+      -webkit-mask-image: radial-gradient(circle at center, black 0%, black 100%);
+      mask-image: radial-gradient(circle at center, black 0%, black 100%);
+      clip-path: circle(0% at 42% 48%);
+    }
+    .hero-card .hero-frost::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.05) 28%, rgba(255,255,255,0.13) 50%, rgba(255,255,255,0.02) 72%, transparent 100%),
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.18), transparent 26%),
+        radial-gradient(circle at 76% 24%, rgba(217,194,143,0.12), transparent 20%);
+      mix-blend-mode: screen; opacity: 0.75;
+    }
+    .hero-card .hero-frost::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.28) 1px, transparent 1px), radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px), radial-gradient(rgba(255,255,255,0.1) 0.8px, transparent 0.8px);
+      background-size: 7px 7px, 11px 11px, 14px 14px; background-position: 0 0, 3px 3px, 5px 2px; opacity: 0.22; mix-blend-mode: soft-light;
+    }
+    .hero-card .hero-sweep {
+      position: absolute; inset: -20% -30%;
+      background: linear-gradient(115deg, transparent 0%, rgba(217,194,143,0.16) 18%, rgba(255,255,255,0.34) 48%, rgba(217,194,143,0.12) 72%, transparent 100%);
+      transform: rotate(18deg) translateX(-140%);
+      filter: blur(8px); opacity: 0.6;
+    }
+    .hero-card .hero-lights {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 16% 24%, rgba(255,255,255,0.18), transparent 18%), radial-gradient(circle at 82% 28%, rgba(217,194,143,0.14), transparent 24%);
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .section-surface { background: var(--cream); }
+    .section-dark { background: linear-gradient(180deg, var(--navy) 0%, #0b1a2e 100%); color: var(--white); }
+    .section-dark .headline { color: var(--white); }
+    .section-dark .lead { color: rgba(255,255,255,0.7); }
+    .content-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 42px; align-items: center; }
+    .portrait-frame { position: relative; padding: 16px; border-radius: 36px; background: var(--white); box-shadow: var(--panel-shadow); }
+    .portrait-frame img { border-radius: 24px; height: 520px; width: 100%; object-fit: cover; }
+    .portrait-frame .badge { position: absolute; top: 26px; left: 26px; background: rgba(7,17,30,0.86); color: var(--white); padding: 10px 14px; border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .about-stack { display: grid; gap: 18px; }
+    .about-card { padding: 22px 24px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 24px; }
+    .about-card h3 { font-size: 1rem; margin: 0 0 8px; color: var(--white); }
+    .about-card p { margin: 0; color: rgba(255,255,255,0.7); line-height: 1.7; }
+    .stats-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 26px; }
+    .stat-card { padding: 18px 16px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); }
+    .stat-card .number { font-family: 'General Sans', sans-serif; font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+    .stat-card .label { font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .services { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 30px; align-items: start; }
+    .service-list { display: grid; gap: 12px; }
+    .service-item { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; padding: 18px 20px; border-radius: 20px; border: 1px solid rgba(7,17,30,0.08); background: rgba(255,255,255,0.54); transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease; }
+    .service-item:hover { transform: translateX(6px); background: var(--white); border-color: rgba(217,194,143,0.5); box-shadow: 0 12px 30px rgba(7,17,30,0.08); }
+    .service-item.active { background: var(--navy); color: var(--white); border-color: rgba(217,194,143,0.25); box-shadow: 0 14px 34px rgba(7,17,30,0.16); }
+    .service-item small { display: block; color: rgba(7,17,30,0.46); font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+    .service-item.active small { color: rgba(255,255,255,0.7); }
+    .service-item strong { font-size: 1.04rem; font-weight: 700; }
+    .service-item span:last-child { color: var(--gold); font-size: 1rem; }
+    .service-preview { position: sticky; top: 110px; border-radius: 32px; overflow: hidden; box-shadow: var(--panel-shadow); background: var(--navy); min-height: 460px; }
+    .service-preview img { width: 100%; height: 100%; object-fit: cover; min-height: 460px; transition: transform 0.45s ease; }
+    .service-preview:hover img { transform: scale(1.04); }
+    .service-preview .overlay { position: absolute; inset: auto 0 0 0; padding: 24px; background: linear-gradient(180deg, transparent 0%, rgba(7,17,30,0.82) 100%); }
+    .service-preview h4 { margin: 0 0 8px; font-size: 1.4rem; color: var(--white); }
+    .service-preview p { margin: 0; color: rgba(255,255,255,0.76); line-height: 1.7; }
+    .quote-shell { display: grid; gap: 18px; }
+    .quote-card { border-radius: 28px; padding: 30px; border: 1px solid rgba(7,17,30,0.08); background: rgba(255,255,255,0.72); box-shadow: 0 16px 44px rgba(7,17,30,0.08); transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .quote-card:hover { transform: translateY(-4px); box-shadow: 0 20px 54px rgba(7,17,30,0.13); border-color: rgba(217,194,143,0.4); }
+    .quote-card .text { font-size: 1.28rem; line-height: 1.7; color: var(--navy); margin-bottom: 18px; }
+    .quote-card .author { font-weight: 700; color: var(--navy); }
+    .quote-card .meta { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+    .gallery-track { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(310px, 42vw); gap: 20px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+    .gallery-track::-webkit-scrollbar { height: 6px; }
+    .gallery-track::-webkit-scrollbar-thumb { background: rgba(7,17,30,0.18); border-radius: 999px; }
+    .gallery-card { scroll-snap-align: start; border-radius: 28px; overflow: hidden; box-shadow: var(--panel-shadow); position: relative; min-height: 420px; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .gallery-card:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(7,17,30,0.16); }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+    .gallery-card:hover img { transform: scale(1.04); }
+    .gallery-card .caption { position: absolute; inset: auto 16px 16px 16px; background: rgba(7,17,30,0.7); color: var(--white); padding: 14px 16px; border-radius: 16px; backdrop-filter: blur(12px); }
+    .contact-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 24px; }
+    .contact-card { border-radius: 30px; padding: 30px; background: var(--white); box-shadow: var(--panel-shadow); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .contact-card:hover { transform: translateY(-3px); box-shadow: 0 24px 58px rgba(7,17,30,0.14); }
+    .map-frame { border-radius: 30px; overflow: hidden; min-height: 380px; box-shadow: var(--panel-shadow); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .map-frame:hover { transform: translateY(-3px); box-shadow: 0 24px 58px rgba(7,17,30,0.14); }
+    .contact-list { display: grid; gap: 12px; margin-top: 22px; }
+    .contact-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 16px; background: rgba(7,17,30,0.04); transition: transform 0.2s ease, background 0.2s ease; }
+    .contact-item:hover { transform: translateY(-2px); background: rgba(7,17,30,0.06); }
+    .contact-item .icon { width: 42px; height: 42px; border-radius: 50%; background: var(--gold); display: inline-flex; align-items: center; justify-content: center; color: var(--navy); }
+    .footer {
+      position: relative; padding: 44px 24px 30px; margin-top: 18px;
+      background: linear-gradient(135deg, #06101d 0%, #0b1726 55%, #07111e 100%);
+      color: rgba(255,255,255,0.78); overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.10);
+    }
+    .footer::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at top right, rgba(217,194,143,0.16), transparent 32%), radial-gradient(circle at bottom left, rgba(149,181,215,0.12), transparent 28%);
+      pointer-events: none;
+    }
+    .footer .container {
+      position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 0.7fr 0.7fr; gap: 22px; align-items: start;
+    }
+    .footer-card {
+      padding: 24px 24px 22px; border-radius: 24px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    }
+    .footer-brand h3 {
+      font-family: 'General Sans', sans-serif; font-size: 1.35rem; color: var(--white); margin: 0 0 10px;
+    }
+    .footer-brand p {
+      margin: 0 0 16px; line-height: 1.8; color: rgba(255,255,255,0.72); max-width: 420px;
+    }
+    .footer-cta {
+      display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 999px; background: var(--gold); color: var(--navy);
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; transition: transform 0.24s ease, box-shadow 0.24s ease;
+    }
+    .footer-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(217,194,143,0.18); }
+    .footer-card h4 {
+      margin: 0 0 14px; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.86);
+    }
+    .footer-links { display: grid; gap: 10px; }
+    .footer-links a, .footer-contact a {
+      color: rgba(255,255,255,0.76); font-size: 0.95rem; transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-links a:hover, .footer-contact a:hover { color: var(--white); transform: translateX(2px); }
+    .footer-contact { display: grid; gap: 10px; }
+    .footer-contact strong { color: var(--white); }
+    .footer-bottom {
+      grid-column: 1 / -1; margin-top: 8px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12);
+      display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; font-size: 0.86rem; color: rgba(255,255,255,0.66);
+      align-items: center;
+    }
+    .footer-credit {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.76);
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .floating-actions { position: fixed; right: 22px; bottom: 22px; display: flex; flex-direction: column; gap: 12px; z-index: 70; }
+    .floating-actions a { width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--navy); color: var(--white); box-shadow: var(--panel-shadow); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .floating-actions a:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(7,17,30,0.18); }
+    .floating-actions a.gold { background: var(--gold); color: var(--navy); }
+    .mobile-bottom-nav {
+      position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 90;
+      display: none; align-items: center; justify-content: space-around;
+      padding: 10px 10px 12px; border-radius: 999px;
+      background: rgba(7,17,30,0.92); color: var(--white);
+      border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(18px);
+      box-shadow: 0 16px 40px rgba(7,17,30,0.24);
+      padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+    .mobile-bottom-nav a {
+      display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 8px 10px; border-radius: 999px; color: rgba(255,255,255,0.72);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      transition: transform 0.24s ease, background 0.24s ease, color 0.24s ease;
+    }
+    .mobile-bottom-nav a.active { color: var(--white); background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .mobile-bottom-nav .material-symbols-outlined { font-size: 20px; }
+    @keyframes rise { to { transform: translateY(0); opacity: 1; } }
+    @keyframes sweep { to { transform: translateX(120%); } }
+    @keyframes drift {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.02); }
+    }
+    @media (max-width: 960px) {
+      .hero .container, .content-grid, .services, .contact-grid { grid-template-columns: 1fr; }
+      .hero-card { min-height: 460px; }
+      .services { gap: 20px; }
+      .service-preview { position: relative; top: 0; min-height: 340px; }
+      .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links { display: none; }
+      .nav-bar { padding: 10px 12px; }
+    }
+    @media (max-width: 768px) {
+      .hero {
+        padding: 110px 18px 92px;
+        min-height: 100svh;
+        display: flex; align-items: center;
+      }
+      .portrait-frame img {
+        height: 360px;
+      }
+      .hero::before {
+        background: linear-gradient(90deg, rgba(248,246,242,0.92) 0%, rgba(248,246,242,0.72) 42%, rgba(248,246,242,0.4) 100%);
+      }
+      .hero::after {
+        content: '';
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(90deg, rgba(248,246,242,0.88) 0%, rgba(248,246,242,0.62) 35%, rgba(248,246,242,0.3) 70%, rgba(248,246,242,0.05) 100%),
+          linear-gradient(180deg, rgba(7,17,30,0.16) 0%, transparent 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero .container {
+        min-height: auto;
+        gap: 24px;
+      }
+      .hero-copy {
+        position: relative; z-index: 2; max-width: 100%;
+      }
+      .hero-visual {
+        display: none;
+      }
+      .hero-title {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+        max-width: 92%;
+      }
+      .hero-actions {
+        width: 100%;
+        margin-top: 6px;
+      }
+      .hero-actions .pill-btn { width: 100%; justify-content: center; }
+      .hero-actions .pill-btn:first-child { display: none; }
+      .hero-actions .pill-btn.secondary {
+        width: auto;
+        min-width: 220px;
+        padding: 13px 18px;
+        justify-content: center;
+      }
+    }
+    @media (max-width: 768px) {
+      .footer .container { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 78px 18px; }
+      .hero { padding-top: 96px; padding-bottom: 110px; }
+      .hero-title { font-size: 2.6rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .gallery-track { grid-auto-columns: 86vw; }
+      .hero-meta { gap: 10px; }
+      .nav-shell { padding: 10px 10px 0; }
+      .nav-bar { width: calc(100vw - 16px); border-radius: 22px; min-height: 58px; padding: 8px 10px; }
+      .nav-brand { gap: 8px; }
+      .nav-brand .material-symbols-outlined {
+        width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+        background: rgba(217,194,143,0.16); color: var(--gold); flex-shrink: 0;
+      }
+      .nav-cta { display: inline-flex; padding: 8px 12px; font-size: 0.64rem; }
+      .nav-menu { width: 38px; height: 38px; }
+      .mobile-bottom-nav { display: flex; }
+      .floating-actions { bottom: 86px; right: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="nav-shell">
+      <nav class="nav-bar" id="navBar">
+        <a class="nav-brand" href="#home">
+          <span class="material-symbols-outlined" style="color: var(--gold);">medical_services</span>
+          <span>Dr. Suhas S Kumar</span>
+        </a>
+        <div class="nav-links">
+          <a class="nav-link active" href="#home">Home</a>
+          <a class="nav-link" href="#about">Doctor</a>
+          <a class="nav-link" href="#services">Services</a>
+          <a class="nav-link" href="#journey">Journey</a>
+          <a class="nav-link" href="#gallery">Gallery</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </div>
+        <a class="nav-menu" href="#services" aria-label="Open menu">
+          <span class="material-symbols-outlined">menu</span>
+        </a>
+        <a class="nav-cta" href="#contact">Book Visit</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section" id="home">
+        <div class="hero-grid"></div>
+        <div class="container">
+          <div class="hero-copy">
+            <div class="eyebrow">Consultant General & Laparoscopic Surgeon</div>
+            <h1 class="hero-title">
+              <span class="line"><span>We don’t just</span></span>
+              <span class="line"><span>operate.</span></span>
+              <span class="line"><span>We restore</span></span>
+              <span class="line"><span class="accent">lives.</span></span>
+            </h1>
+            <p class="lead">A premium surgical experience shaped by precision, calm confidence, and a deeply personal approach to care. From advanced laparoscopy to compassionate guidance, every step is designed to feel clear and reassuring.</p>
+            <div class="hero-actions" style="display:flex; flex-wrap:wrap; gap:12px; margin-top: 8px;">
+              <a class="pill-btn" href="https://api.whatsapp.com/send/?phone=%2B9035942513&text=Hello" target="_blank" rel="noopener">Book consultation <span class="material-symbols-outlined">arrow_forward</span></a>
+              <a class="pill-btn secondary" href="#services">Explore specialties</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-card" data-tilt>
+              <img class="hero-image" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=80" alt="Male consultant surgeon in a calm clinical environment" />
+              <div class="hero-frost" aria-hidden="true">
+                <div class="hero-sweep"></div>
+                <div class="hero-lights"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-dark reveal" id="about">
+        <div class="container content-grid">
+          <div class="portrait-frame">
+            <span class="badge">Doctor Profile</span>
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=80" alt="Male consultant surgeon in clinic" />
+          </div>
+          <div>
+            <div class="eyebrow">About the doctor</div>
+            <h2 class="headline">Precision built around <span class="muted">human care.</span></h2>
+            <p class="lead" style="margin-top:18px;">Dr. Suhas S Kumar is a consultant general and laparoscopic surgeon with deep expertise in minimally invasive procedures, backed by years of hospital experience and a calm, reassuring bedside manner.</p>
+            <div class="about-stack" style="margin-top:24px;">
+              <div class="about-card">
+                <h3>Clinical focus</h3>
+                <p>Advanced laparoscopic surgery, hernia and gallbladder care, thyroid and gastrointestinal procedures, and surgical support for complex cases with thoughtful recovery planning.</p>
+              </div>
+              <div class="about-card">
+                <h3>Trusted approach</h3>
+                <p>Every consultation is designed to make the path forward feel clear, evidence-led, and reassuring — whether a patient is exploring surgery for the first time or returning for a second opinion.</p>
+              </div>
+            </div>
+            <div class="stats-row">
+              <div class="stat-card">
+                <div class="number" data-counter="11">0</div>
+                <div class="label">Years</div>
+              </div>
+              <div class="stat-card">
+                <div class="number" data-counter="5000">0</div>
+                <div class="label">Procedures</div>
+              </div>
+              <div class="stat-card">
+                <div class="number" data-counter="99">0</div>
+                <div class="label">Satisfaction</div>
+              </div>
+              <div class="stat-card">
+                <div class="number" data-counter="4">0</div>
+                <div class="label">Locations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface reveal" id="services">
+        <div class="container">
+          <div class="eyebrow">Clinical specialties</div>
+          <h2 class="headline">A focused practice built for <span class="muted">clarity and confidence.</span></h2>
+          <p class="lead" style="margin-top: 18px;">Hover each specialty to explore the care philosophy behind it.</p>
+          <div class="services" style="margin-top: 34px;">
+            <div class="service-list">
+              <div class="service-item active" data-image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80" data-title="Laparoscopic Surgery" data-copy="Minimally invasive techniques designed to reduce discomfort, shorten recovery, and support a calmer surgical experience.">
+                <span class="material-symbols-outlined">precision_manufacturing</span>
+                <div>
+                  <small>01</small>
+                  <strong>Laparoscopic Surgery</strong>
+                </div>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </div>
+              <div class="service-item" data-image="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=900&q=80" data-title="Hernia Care" data-copy="Expert repair with a focus on safe recovery, tissue preservation, and long-term comfort.">
+                <span class="material-symbols-outlined">health_and_safety</span>
+                <div>
+                  <small>02</small>
+                  <strong>Hernia Care</strong>
+                </div>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </div>
+              <div class="service-item" data-image="https://images.unsplash.com/photo-1580281657527-5f9c0f34f6d9?auto=format&fit=crop&w=900&q=80" data-title="Gallbladder Surgery" data-copy="A carefully planned approach for gallbladder conditions that respects both speed and dignity in recovery.">
+                <span class="material-symbols-outlined">vaccines</span>
+                <div>
+                  <small>03</small>
+                  <strong>Gallbladder Surgery</strong>
+                </div>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </div>
+              <div class="service-item" data-image="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80" data-title="Thyroid and Breast Care" data-copy="Thoughtful surgical planning with clear communication and specialist precision at every stage.">
+                <span class="material-symbols-outlined">monitor_heart</span>
+                <div>
+                  <small>04</small>
+                  <strong>Thyroid and Breast Care</strong>
+                </div>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </div>
+            </div>
+            <div class="service-preview">
+              <img id="serviceImage" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80" alt="Surgical procedure preview" />
+              <div class="overlay">
+                <h4 id="serviceTitle">Laparoscopic Surgery</h4>
+                <p id="serviceCopy">Minimally invasive techniques designed to reduce discomfort, shorten recovery, and support a calmer surgical experience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface reveal" id="journey">
+        <div class="container">
+          <div class="eyebrow">Patient journey</div>
+          <h2 class="headline">A measured experience from <span class="muted">first question to final follow-up.</span></h2>
+          <div class="quote-shell" style="margin-top: 30px;">
+            <div class="quote-card">
+              <div class="text">“I felt informed, calm, and supported throughout the entire process. Dr. Kumar made a difficult decision feel manageable and clear.”</div>
+              <div class="author">Priya N.</div>
+              <div class="meta">Gallbladder surgery · Bengaluru</div>
+            </div>
+            <div class="quote-card">
+              <div class="text">“The recovery was smoother than I expected. The guidance, attention to detail, and reassurance made all the difference.”</div>
+              <div class="author">Raghav M.</div>
+              <div class="meta">Hernia repair · Jayanagar</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface reveal" id="gallery">
+        <div class="container">
+          <div class="eyebrow">Clinic and care</div>
+          <h2 class="headline">A visual narrative of <span class="muted">technology, trust, and calm.</span></h2>
+          <div class="gallery-track" style="margin-top: 28px;">
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=80" alt="Modern surgical suite" />
+              <div class="caption">Modern operating environment</div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80" alt="Clinical care space" />
+              <div class="caption">Thoughtful clinical preparation</div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80" alt="Surgical consultation" />
+              <div class="caption">Patient-centred consultation</div>
+            </div>
+            <div class="gallery-card">
+              <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=900&q=80" alt="Recovery and post-op care" />
+              <div class="caption">Recovery with close support</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface reveal" id="contact">
+        <div class="container contact-grid">
+          <div class="contact-card">
+            <div class="eyebrow">Make an appointment</div>
+            <h2 class="headline">Book a consultation with <span class="muted">confidence.</span></h2>
+            <p class="lead" style="margin-top: 16px;">Appointments are available for surgical consultations, follow-up visits, and second opinions. The team responds quickly on WhatsApp for convenient scheduling.</p>
+            <div class="contact-list">
+              <a class="contact-item" href="tel:9035942513">
+                <span class="icon"><span class="material-symbols-outlined">call</span></span>
+                <span><strong>Call</strong><br />90359 42513</span>
+              </a>
+              <a class="contact-item" href="https://api.whatsapp.com/send/?phone=%2B9035942513&text=Hello" target="_blank" rel="noopener">
+                <span class="icon"><span class="material-symbols-outlined">chat</span></span>
+                <span><strong>WhatsApp</strong><br />Message instantly</span>
+              </a>
+              <a class="contact-item" href="mailto:suhassk2@gmail.com">
+                <span class="icon"><span class="material-symbols-outlined">mail</span></span>
+                <span><strong>Email</strong><br />suhassk2@gmail.com</span>
+              </a>
+            </div>
+          </div>
+          <div class="map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6!2d77.5772763!3d12.9262302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b1fc13c3b7%3A0x4f5a3b3a7dfc70ab!2sDeepak%20Hospital!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Clinic map"></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-card footer-brand">
+          <div class="eyebrow">Excellence in surgery</div>
+          <h3>Dr. Suhas S Kumar</h3>
+          <p>Consultant General & Laparoscopic Surgeon offering precise, compassionate care with a calm premium experience for every patient in Bengaluru.</p>
+          <a class="footer-cta" href="#contact">Book a consultation</a>
+        </div>
+
+        <div class="footer-card footer-links">
+          <h4>Explore</h4>
+          <a href="#about">About the doctor</a>
+          <a href="#services">Clinical specialties</a>
+          <a href="#journey">Patient journey</a>
+          <a href="#gallery">Clinic & care</a>
+        </div>
+
+        <div class="footer-card footer-contact">
+          <h4>Contact</h4>
+          <a href="tel:9035942513"><strong>Call</strong> · +91 90359 42513</a>
+          <a href="https://api.whatsapp.com/send/?phone=%2B9035942513&text=Hello" target="_blank" rel="noopener"><strong>WhatsApp</strong> · Message instantly</a>
+          <a href="mailto:suhassk2@gmail.com"><strong>Email</strong> · suhassk2@gmail.com</a>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Dr. Suhas S Kumar. All rights reserved.</span>
+          <span class="footer-credit">Powered by AppVertex · Built by Leston & Lenstar</span>
+        </div>
+      </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
+      <a class="active" href="#home"><span class="material-symbols-outlined">home</span><span>Home</span></a>
+      <a href="#about"><span class="material-symbols-outlined">person</span><span>Doctor</span></a>
+      <a href="#services"><span class="material-symbols-outlined">medical_services</span><span>Services</span></a>
+      <a href="#contact"><span class="material-symbols-outlined">call</span><span>Contact</span></a>
+    </nav>
+
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const navBar = document.getElementById('navBar');
+    window.addEventListener('scroll', () => {
+      navBar.classList.toggle('scrolled', window.scrollY > 12);
+    });
+
+    const heroCard = document.querySelector('.hero-card');
+    const heroImage = document.querySelector('.hero-image');
+    const heroFrost = document.querySelector('.hero-frost');
+    const heroSweep = document.querySelector('.hero-sweep');
+    const heroLead = document.querySelector('.hero-copy .lead');
+    const heroActions = document.querySelector('.hero-actions');
+    const heroLines = gsap.utils.toArray('.hero-title .line');
+
+    gsap.set(heroImage, { opacity: 0, scale: 1.06, y: 24, filter: 'blur(18px) saturate(0.85)' });
+    gsap.set(heroFrost, { opacity: 1, clipPath: 'circle(0% at 50% 50%)' });
+    gsap.set(heroSweep, { x: '-140%', y: '-18%' });
+    gsap.set(heroLines, { opacity: 0, y: 38, clipPath: 'inset(0 0 100% 0)' });
+    gsap.set([heroLead, heroActions], { opacity: 0, y: 16 });
+
+    const heroTl = gsap.timeline({ defaults: { ease: 'power4.inOut' }, delay: 0.1 });
+    heroTl
+      .to(heroFrost, { clipPath: 'circle(180% at 42% 48%)', duration: 2.6, onUpdate: () => { heroFrost.style.webkitMaskImage = 'radial-gradient(circle at center, black 0%, black 100%)'; heroFrost.style.maskImage = 'radial-gradient(circle at center, black 0%, black 100%)'; } })
+      .to(heroFrost, { opacity: 0, duration: 1.05 }, '-=1.0')
+      .to(heroImage, { opacity: 1, scale: 1, y: 0, filter: 'blur(0px) saturate(1)', duration: 2.1 }, '-=2.1')
+      .to(heroSweep, { x: '140%', y: '18%', duration: 2.4 }, '-=2.2')
+      .to(heroLines, { y: 0, opacity: 1, clipPath: 'inset(0 0 0% 0)', duration: 1.0, stagger: 0.12 }, '-=1.6')
+      .to(heroLead, { y: 0, opacity: 1, duration: 0.8 }, '-=0.95')
+      .to(heroActions, { y: 0, opacity: 1, duration: 0.8 }, '-=0.75');
+
+    let pointerX = 0.5;
+    let pointerY = 0.5;
+    let rafId = null;
+
+    const updateHeroParallax = () => {
+      const offsetX = (pointerX - 0.5) * 10;
+      const offsetY = (pointerY - 0.5) * 10;
+      gsap.to(heroCard, {
+        x: offsetX * 0.25,
+        y: offsetY * 0.18,
+        rotateY: offsetX * 0.6,
+        rotateX: offsetY * -0.6,
+        duration: 1.1,
+        ease: 'power2.out'
+      });
+      rafId = null;
+    };
+
+    document.addEventListener('mousemove', (event) => {
+      pointerX = event.clientX / window.innerWidth;
+      pointerY = event.clientY / window.innerHeight;
+      if (!rafId) rafId = requestAnimationFrame(updateHeroParallax);
+    });
+    document.addEventListener('mouseleave', () => {
+      gsap.to(heroCard, { x: 0, y: 0, rotateY: -8, rotateX: 2, duration: 1.1, ease: 'power2.out' });
+    });
+
+    ScrollTrigger.create({
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom 30%',
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = Math.min(1, Math.max(0, self.progress));
+        gsap.set('.hero', {
+          '--hero-dark': progress * 0.14,
+          '--hero-copy-opacity': 1 - progress * 0.16,
+          '--hero-image-scale': 1 + progress * 0.03
+        });
+      }
+    });
+
+    const serviceItems = document.querySelectorAll('.service-item');
+    const serviceImage = document.getElementById('serviceImage');
+    const serviceTitle = document.getElementById('serviceTitle');
+    const serviceCopy = document.getElementById('serviceCopy');
+    serviceItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        serviceItems.forEach((entry) => entry.classList.remove('active'));
+        item.classList.add('active');
+        serviceImage.src = item.dataset.image;
+        serviceTitle.textContent = item.dataset.title;
+        serviceCopy.textContent = item.dataset.copy;
+      });
+    });
+
+    const counters = document.querySelectorAll('[data-counter]');
+    const revealItems = document.querySelectorAll('.reveal');
+    revealItems.forEach((item, index) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.04,
+            ease: 'power3.out',
+            onComplete: () => item.classList.add('reveal-visible')
+          });
+        }
+      });
+    });
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.counter);
+        let start = 0;
+        const duration = 1200;
+        const startTime = performance.now();
+        const tick = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.7 });
+    counters.forEach((counter) => counterObserver.observe(counter));
+
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === '#' + id));
+      });
+    }, { rootMargin: '-35% 0px -45% 0px' });
+    sections.forEach((section) => sectionObserver.observe(section));
+  </script>
+</body>
+</html>
