@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Activity, Menu, X, ArrowRight, MapPin, Phone, Mail, Home, Image as ImageIcon } from 'lucide-react';
+import { Activity, Menu, X, ArrowRight, MapPin, Phone, Mail, Moon, Sun, Home, Image as ImageIcon, User, Stethoscope, GalleryHorizontalEnd, FileText, ChevronRight } from 'lucide-react';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import ScrollToTopButton from './ScrollToTop';
 
 const mobileNavItems = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'Doctor' },
-  { to: '/services', label: 'Services' },
-  { to: '/gallery', label: 'Gallery' },
-  { to: '/blog', label: 'Blog' },
-  { to: '/contact', label: 'Contact' },
+  { to: '/', label: 'Home', icon: Home },
+  { to: '/about', label: 'Doctor', icon: User },
+  { to: '/services', label: 'Services', icon: Stethoscope },
+  { to: '/gallery', label: 'Gallery', icon: GalleryHorizontalEnd },
+  { to: '/blog', label: 'Blog', icon: FileText },
+  { to: '/contact', label: 'Contact', icon: Phone },
 ];
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState('light');
   const [footerHeight, setFooterHeight] = useState(0);
   const footerRef = useRef(null);
   const location = useLocation();
@@ -33,6 +34,27 @@ export default function Layout({ children }) {
     setMobileMenuOpen(false);
     window.scrollTo(0, 0);
   }, [location.pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem('site-theme');
+    const defaultTheme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(defaultTheme);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem('site-theme', theme);
+  }, [theme]);
 
   // Measure footer height for the Curtain Reveal effect
   useEffect(() => {
@@ -67,7 +89,7 @@ export default function Layout({ children }) {
           position: 'relative',
           zIndex: 10,
           background: 'var(--bg-primary)',
-          boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.06)',
           // On mobile, add 70px (bottom-nav height) on top of footer height
           // so the fully revealed footer clears the bottom nav bar
           marginBottom: footerHeight > 0 ? `${footerHeight}px` : 'auto',
@@ -93,7 +115,7 @@ export default function Layout({ children }) {
                   {item.label}
                 </NavLink>
               ))}
-              <Link to="/contact" className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.875rem' }}>
+              <Link to="/contact" className="btn btn-premium" style={{ padding: '0.6rem 1.25rem', fontSize: '0.875rem' }}>
                 Book Visit
               </Link>
             </nav>
@@ -108,38 +130,104 @@ export default function Layout({ children }) {
           </div>
         </header>
 
+        {/* Premium Floating Command Center — Mobile Only */}
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div 
-              className="mobile-nav-overlay"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-            >
-              {mobileNavItems.map((item, i) => (
-                <motion.div
-                  key={item.to}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.1 }}
-                >
-                  <NavLink 
-                    to={item.to}
-                    className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
-                  >
-                    {item.label}
-                  </NavLink>
-                </motion.div>
-              ))}
+            <>
+              {/* Blurred backdrop overlay */}
               <motion.div
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ delay: 0.1 + mobileNavItems.length * 0.1 }}
+                className="cc-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                onClick={() => setMobileMenuOpen(false)}
+              />
+
+              {/* Floating Glass Panel */}
+              <motion.div
+                className="cc-panel"
+                initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 20 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Link to="/contact" className="btn btn-primary">Book Consultation</Link>
+                {/* Noise texture overlay */}
+                <div className="cc-noise" />
+                
+                {/* Ambient glow */}
+                <div className="cc-glow" />
+
+                {/* Inner highlight */}
+                <div className="cc-inner-highlight" />
+
+                {/* Header */}
+                <div className="cc-header">
+                  <div className="cc-brand">
+                    <Activity size={22} strokeWidth={2.2} />
+                    <span>Dr. Suhas</span>
+                  </div>
+                  <motion.button
+                    className="cc-close-btn"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Close menu"
+                    whileTap={{ scale: 0.9 }}
+                    exit={{ rotate: 90 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <X size={18} strokeWidth={2.5} />
+                  </motion.button>
+                </div>
+
+                {/* Navigation Items */}
+                <nav className="cc-nav">
+                  {mobileNavItems.map((item, i) => {
+                    const IconComponent = item.icon;
+                    return (
+                      <motion.div
+                        key={item.to}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 8 }}
+                        transition={{ delay: 0.06 + i * 0.04, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <NavLink
+                          to={item.to}
+                          className={({ isActive }) => `cc-nav-item ${isActive ? 'active' : ''}`}
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="cc-nav-icon">
+                            <IconComponent size={22} strokeWidth={1.8} />
+                          </span>
+                          <span className="cc-nav-label">{item.label}</span>
+                          <span className="cc-nav-arrow">
+                            <ChevronRight size={18} strokeWidth={2} />
+                          </span>
+                        </NavLink>
+                      </motion.div>
+                    );
+                  })}
+                </nav>
+
+                {/* CTA Button */}
+                <motion.div
+                  className="cc-cta-wrap"
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ delay: 0.06 + mobileNavItems.length * 0.04, duration: 0.3 }}
+                >
+                  <Link 
+                    to="/contact" 
+                    className="cc-cta-btn"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span>Book Consultation</span>
+                    <ArrowRight size={18} strokeWidth={2.2} />
+                  </Link>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </>
           )}
         </AnimatePresence>
 
@@ -170,12 +258,12 @@ export default function Layout({ children }) {
           <div className="footer-brand-col">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
               <Activity size={22} style={{ color: 'var(--accent-gold)' }} />
-              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.2rem' }}>Dr. Suhas S Kumar</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.6rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Dr. Suhas S Kumar</span>
             </div>
             <p className="text-body" style={{ marginBottom: '1.75rem', maxWidth: '340px', fontSize: '0.9rem', lineHeight: 1.7 }}>
               Advanced surgical care with compassion. Specialising in laparoscopy, hernia repair, and complex abdominal procedures.
             </p>
-            <Link to="/contact" className="btn btn-primary" style={{ fontSize: '0.875rem', padding: '0.65rem 1.4rem' }}>
+            <Link to="/contact" className="btn btn-premium" style={{ fontSize: '0.875rem', padding: '0.65rem 1.4rem' }}>
               Book Consultation <ArrowRight size={16} />
             </Link>
           </div>
@@ -235,22 +323,37 @@ export default function Layout({ children }) {
         
         {/* Footer Bottom Bar */}
         <div className="footer-bottom-bar">
-          <div className="container footer-bottom">
-            <div className="footer-links">
-              <Link to="/services">Services</Link>
-              <Link to="/gallery">Gallery</Link>
-              <Link to="/contact">Contact</Link>
+          <div className="container footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
+            <div style={{ flex: '1 1 0%', display: 'flex', justifyContent: 'flex-start' }}>
+              <span className="footer-copyright">© {new Date().getFullYear()} Dr. Suhas S Kumar. All rights reserved.</span>
             </div>
 
-            <div className="footer-credits credit-line">
-              <span>Powered by</span>
-              <span className="appvertex-badge">A</span>
-              <span style={{ fontWeight: 600 }}>Appvertex</span>
-              <span className="footer-dot">·</span>
-              <span>Built by Leston &amp; Lenstar</span>
+            <div style={{ flex: '1 1 auto', display: 'flex', justifyContent: 'center' }}>
+              <div className="footer-credits credit-line">
+                <span>Powered by</span>
+                <span className="appvertex-badge">A</span>
+                <span style={{ fontWeight: 600 }}>Appvertex</span>
+                <span className="footer-dot">·</span>
+                <span>Built by Leston &amp; Lenstar</span>
+              </div>
             </div>
 
-            <span className="footer-copyright">© {new Date().getFullYear()} Dr. Suhas S Kumar. All rights reserved.</span>
+            <div style={{ flex: '1 1 0%', display: 'flex', justifyContent: 'flex-end' }}>
+              <button
+                type="button"
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="theme-switch"
+                aria-label="Toggle Dark Mode"
+              >
+                <div className="theme-switch-thumb" />
+                <div className="theme-switch-icon sun">
+                  <Sun size={18} />
+                </div>
+                <div className="theme-switch-icon moon">
+                  <Moon size={18} />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </footer>

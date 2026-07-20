@@ -110,7 +110,7 @@ function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction }) 
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(160deg, rgba(6,11,17,0.15) 0%, rgba(6,11,17,0.55) 50%, rgba(6,11,17,0.92) 100%)',
+        background: 'var(--card-image-overlay)',
       }} />
 
       {/* Card content */}
@@ -128,7 +128,7 @@ function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction }) 
             width: '52px',
             height: '52px',
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.08)',
+            background: 'var(--card-overlay-surface)',
             border: '1px solid rgba(255,255,255,0.12)',
             display: 'flex',
             alignItems: 'center',
@@ -144,7 +144,7 @@ function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction }) 
           </div>
 
           <div style={{
-            background: 'rgba(0,0,0,0.35)',
+            background: 'var(--card-overlay-surface)',
             backdropFilter: 'blur(12px)',
             border: `1px solid ${service.accent}40`,
             color: service.accent,
@@ -174,7 +174,7 @@ function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction }) 
             {service.title}
           </h3>
           <p style={{
-            color: 'rgba(248,249,250,0.75)',
+            color: 'var(--text-secondary)',
             fontSize: 'clamp(0.875rem, 1.4vw, 1rem)',
             lineHeight: 1.7,
             maxWidth: '480px',
@@ -306,10 +306,10 @@ export default function ServicesDeck() {
                 width: '52px',
                 height: '52px',
                 borderRadius: '50%',
-                background: 'rgba(6,11,17,0.6)',
+                background: 'rgba(17,26,41,0.72)',
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.15)',
+                border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
                 cursor: 'pointer',
                 display: 'flex',

@@ -165,7 +165,7 @@ function HeroCard({ service }) {
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to top, rgba(6,11,17,0.95) 0%, rgba(6,11,17,0.4) 60%, rgba(6,11,17,0.1) 100%)',
+        background: 'var(--card-image-overlay-soft)',
         zIndex: 1,
         transition: 'background 0.5s ease',
       }} />
@@ -193,7 +193,7 @@ function HeroCard({ service }) {
 
         <Link 
           to={`/services/${service.slug}`} 
-          className="btn btn-primary"
+          className="btn btn-premium"
         >
           Discover Specialty <ArrowRight size={18} />
         </Link>

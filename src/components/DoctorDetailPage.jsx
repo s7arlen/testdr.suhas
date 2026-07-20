@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, BookOpen, GraduationCap, Briefcase, MapPin } from 'lucide-react';
 
 const credentials = [
-  { label: 'MS (Gen Surg)', desc: 'Master of Surgery — General Surgery' },
-  { label: 'FIAGES', desc: 'Fellow of Indian Association of Gastrointestinal Endo-Surgeons' },
-  { label: 'FALS', desc: 'Fellow of Advanced Laparoscopic Surgery' },
-  { label: 'Dip Lap', desc: 'Diploma in Laparoscopic Surgery' },
+  { label: 'MS (Gen Surg)', desc: 'Master of Surgery — General Surgery', icon: GraduationCap },
+  { label: 'FIAGES', desc: 'Fellow of Indian Association of Gastrointestinal Endo-Surgeons', icon: Award },
+  { label: 'FALS', desc: 'Fellow of Advanced Laparoscopic Surgery', icon: Award },
+  { label: 'Dip Lap', desc: 'Diploma in Laparoscopic Surgery', icon: BookOpen },
 ];
 
 const milestones = [
@@ -41,14 +41,19 @@ export default function DoctorDetailPage() {
   return (
     <>
       {/* Hero */}
-      <section style={{ position: 'relative', minHeight: '70vh', display: 'flex', alignItems: 'flex-end', paddingBottom: '4rem', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+      <section style={{ position: 'relative', minHeight: '70vh', display: 'flex', alignItems: 'flex-end', paddingBottom: '5rem', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <img
             src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1920&q=80"
             alt="Dr. Suhas S Kumar"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '0% 0%' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,11,17,1) 0%, rgba(6,11,17,0.6) 50%, rgba(6,11,17,0.3) 100%)' }} />
+          {/* Overlay that fades to bg-secondary at the bottom to match the next section seamlessly */}
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            background: 'linear-gradient(to bottom, rgba(247, 251, 255, 0.4) 0%, rgba(247, 251, 255, 0.8) 60%, var(--bg-secondary) 100%)' 
+          }} />
         </div>
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
@@ -56,7 +61,7 @@ export default function DoctorDetailPage() {
             <h1 className="h-display" style={{ marginBottom: '1rem' }}>
               Dr. Suhas<br /><span className="text-gradient-gold">S Kumar</span>
             </h1>
-            <p className="text-lead" style={{ maxWidth: '550px' }}>
+            <p className="text-lead" style={{ maxWidth: '550px', marginBottom: 0 }}>
               MS (Gen Surg) · FIAGES · FALS · Dip Lap
             </p>
           </motion.div>
@@ -64,34 +69,48 @@ export default function DoctorDetailPage() {
       </section>
 
       {/* Credentials */}
-      <section className="section" style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      <section className="section" style={{ background: 'linear-gradient(180deg, #F8FAFC, #F3F7FC, #EDF4FF)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <div className="text-eyebrow" style={{ marginBottom: '1rem' }}>Qualifications</div>
-            <h2 className="h-2">Professional <span className="text-gradient">Credentials</span></h2>
+            <div className="text-eyebrow" style={{ marginBottom: '1rem', color: '#2563EB' }}>Qualifications</div>
+            <h2 className="h-2" style={{ color: '#0F172A' }}>Professional Credentials</h2>
           </div>
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem' }}
+            className="certificate-grid"
           >
-            {credentials.map((cred, i) => (
-              <motion.div key={i} variants={fadeUp} style={{
-                padding: '2.5rem 2rem',
-                background: 'var(--bg-primary)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: '20px',
-                textAlign: 'center',
-              }}>
-                <Award size={28} style={{ color: 'var(--accent-gold)', marginBottom: '1.5rem' }} />
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 700, color: 'var(--accent-gold)', marginBottom: '0.75rem' }}>
-                  {cred.label}
-                </h3>
-                <p className="text-body" style={{ margin: 0, fontSize: '0.9rem' }}>{cred.desc}</p>
-              </motion.div>
-            ))}
+            {credentials.map((cred, i) => {
+              const IconComp = cred.icon;
+              return (
+                <motion.div key={i} variants={fadeUp} className="certificate-card">
+                  <div className="cert-shimmer" />
+                  <div className="certificate-frame">
+                    <div className="certificate-inner">
+                      {/* Ornamental Corners */}
+                      <div className="cert-corner tl" />
+                      <div className="cert-corner tr" />
+                      <div className="cert-corner bl" />
+                      <div className="cert-corner br" />
+
+                      <div className="cert-header">
+                        <IconComp size={36} className="cert-icon" />
+                        <span className="cert-label">Professional Qualification</span>
+                      </div>
+                      
+                      <h3 className="cert-title">{cred.label}</h3>
+                      <p className="cert-desc">{cred.desc}</p>
+                      
+                      <div className="cert-seal">
+                        <Award size={20} className="cert-seal-icon" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -238,7 +257,7 @@ export default function DoctorDetailPage() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="h-2" style={{ marginBottom: '1.5rem' }}>Ready to discuss your care?</h2>
             <p className="text-lead" style={{ marginBottom: '2.5rem' }}>Schedule a consultation with Dr. Suhas for personalised surgical advice and compassionate support.</p>
-            <Link to="/contact" className="btn btn-primary">
+            <Link to="/contact" className="btn btn-premium">
               Book a Consultation <ArrowRight size={18} />
             </Link>
           </motion.div>

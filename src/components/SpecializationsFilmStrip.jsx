@@ -83,7 +83,7 @@ const specializations = [
 /* ============================= */
 function MobileFilmStrip() {
   return (
-    <section style={{ backgroundColor: '#060B11', padding: '4rem 0 3rem' }}>
+    <section style={{ backgroundColor: 'var(--bg-secondary)', padding: '4rem 0 3rem' }}>
       <div className="container">
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -127,7 +127,8 @@ function MobileFilmStrip() {
                 borderRadius: '20px',
                 overflow: 'hidden',
                 position: 'relative',
-                border: '1px solid rgba(222, 200, 152, 0.1)',
+                border: '1px solid var(--border-subtle)',
+                boxShadow: 'var(--shadow-md)',
               }}
             >
               {/* Card Image */}
@@ -138,12 +139,12 @@ function MobileFilmStrip() {
                   style={{
                     width: '100%', height: '100%',
                     objectFit: 'cover',
-                    filter: 'brightness(0.4) saturate(0.7)',
+                    filter: 'brightness(0.9) saturate(0.95)',
                   }}
                 />
                 <div style={{
                   position: 'absolute', inset: 0,
-                  background: 'linear-gradient(to bottom, rgba(6,11,17,0.3) 0%, rgba(6,11,17,0.9) 100%)',
+                  background: 'var(--card-image-overlay-frame)',
                 }} />
 
                 {/* Frame Label */}
@@ -153,33 +154,20 @@ function MobileFilmStrip() {
                   fontSize: '0.6rem',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
-                  color: 'rgba(255,255,255,0.3)',
+                  color: 'var(--text-muted)',
                   fontFamily: 'monospace',
                 }}>
                   FRAME {spec.number} / 09
                 </div>
 
-                {/* Giant Number */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '-10px', right: '1rem',
-                  fontSize: '5rem',
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 700,
-                  color: 'transparent',
-                  WebkitTextStroke: `1px ${spec.accent}`,
-                  opacity: 0.2,
-                  lineHeight: 1,
-                  userSelect: 'none',
-                }}>
-                  {spec.number}
-                </div>
               </div>
 
               {/* Card Content */}
               <div style={{
                 padding: '1.25rem 1.25rem 1.5rem',
-                backgroundColor: 'rgba(10, 18, 30, 0.95)',
+                backgroundColor: 'var(--bg-card)',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
               }}>
                 {/* Tag */}
                 <div style={{
@@ -205,7 +193,7 @@ function MobileFilmStrip() {
                   fontFamily: 'var(--font-display)',
                   fontSize: '1.35rem',
                   fontWeight: 600,
-                  color: '#F8F9FA',
+                  color: 'var(--text-primary)',
                   margin: '0 0 0.75rem',
                   lineHeight: 1.2,
                 }}>
@@ -214,7 +202,7 @@ function MobileFilmStrip() {
 
                 {/* Description */}
                 <p style={{
-                  color: 'rgba(200,210,220,0.75)',
+                  color: 'var(--text-secondary)',
                   fontSize: '0.85rem',
                   lineHeight: 1.6,
                   margin: '0 0 1.25rem',
@@ -272,7 +260,7 @@ function DesktopFilmStrip() {
   };
 
   return (
-    <section style={{ position: 'relative', height: '100vh', backgroundColor: '#060B11', overflow: 'hidden' }}>
+    <section style={{ position: 'relative', height: '100vh', backgroundColor: 'var(--bg-secondary)', overflow: 'hidden' }}>
 
       {/* Section Label */}
       <div style={{
@@ -283,8 +271,8 @@ function DesktopFilmStrip() {
         zIndex: 30,
         textAlign: 'center'
       }}>
-        <div className="text-eyebrow" style={{ marginBottom: '0.25rem' }}>Clinical Specialties</div>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', letterSpacing: '0.05em' }}>
+        <div className="text-eyebrow" style={{ marginBottom: '0.5rem', fontSize: '1rem', letterSpacing: '0.2em', color: '#ffffff', textShadow: '0 0 20px rgba(59,130,246,0.4)' }}>Clinical Specialties</div>
+        <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1rem', letterSpacing: '0.03em', fontWeight: 500 }}>
           Explore our {specializations.length} specializations
         </p>
       </div>
@@ -309,14 +297,15 @@ function DesktopFilmStrip() {
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(10,18,30,0.6)',
+            background: 'linear-gradient(135deg, #3B82F6, #2563EB)',
             backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            color: '#fff',
+            border: '1px solid rgba(96,165,250,0.3)',
+            color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: activeIndex === 0 ? 'default' : 'pointer',
+            boxShadow: '0 8px 24px rgba(37,99,235,0.35)',
             transition: 'all 0.3s ease'
           }}
         >
@@ -331,14 +320,15 @@ function DesktopFilmStrip() {
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            backgroundColor: 'rgba(10,18,30,0.6)',
+            background: 'linear-gradient(135deg, #3B82F6, #2563EB)',
             backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            color: '#fff',
+            border: '1px solid rgba(96,165,250,0.3)',
+            color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: activeIndex === specializations.length - 1 ? 'default' : 'pointer',
+            boxShadow: '0 8px 24px rgba(37,99,235,0.35)',
             transition: 'all 0.3s ease'
           }}
         >
@@ -398,14 +388,14 @@ function DesktopFilmStrip() {
                 position: 'absolute', inset: 0,
                 width: '100%', height: '100%',
                 objectFit: 'cover',
-                filter: 'brightness(0.3) saturate(0.6)',
+                filter: 'brightness(0.75) saturate(0.8)',
               }}
             />
 
-            {/* Dark gradient overlay */}
+            {/* Light gradient overlay */}
             <div style={{
               position: 'absolute', inset: 0,
-              background: 'linear-gradient(135deg, rgba(6,11,17,0.95) 0%, rgba(6,11,17,0.5) 60%, rgba(6,11,17,0.8) 100%)',
+              background: 'var(--card-image-overlay-soft)',
             }} />
 
             {/* Frame Number */}
@@ -490,7 +480,7 @@ function DesktopFilmStrip() {
                   fontFamily: 'var(--font-display)',
                   fontSize: 'clamp(2.5rem, 7vw, 5.5rem)',
                   fontWeight: 700,
-                  color: '#F8F9FA',
+                  color: 'var(--text-primary)',
                   letterSpacing: '-0.03em',
                   lineHeight: 1.05,
                   margin: 0,
@@ -507,7 +497,7 @@ function DesktopFilmStrip() {
                 animate={activeIndex === i ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.25 }}
                 style={{
-                  color: 'rgba(200,210,220,0.85)',
+                  color: 'var(--text-secondary)',
                   fontSize: 'clamp(1rem, 1.8vw, 1.2rem)',
                   lineHeight: 1.7,
                   maxWidth: '520px',

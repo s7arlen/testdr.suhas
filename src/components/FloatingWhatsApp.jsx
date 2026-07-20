@@ -13,7 +13,7 @@ export default function FloatingWhatsApp() {
       whileHover={{ scale: 1.1 }}
       style={{
         position: 'fixed',
-        bottom: '100px',
+        bottom: 'max(90px, calc(68px + env(safe-area-inset-bottom, 0px)))',
         right: '24px',
         zIndex: 48,
         width: '56px',
@@ -24,7 +24,7 @@ export default function FloatingWhatsApp() {
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        boxShadow: '0 4px 14px rgba(37, 211, 102, 0.4)',
+        boxShadow: '0 15px 40px rgba(34, 197, 94, 0.25), 0 4px 14px rgba(37, 211, 102, 0.3)',
         transition: 'box-shadow 0.3s ease',
         textDecoration: 'none',
       }}

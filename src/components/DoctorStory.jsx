@@ -69,10 +69,7 @@ function StackCard({ item, index, total, scrollYProgress }) {
           position: 'relative',
         }}
       >
-        {/* Giant watermark number */}
-        <div className="story-card-watermark">
-          {item.index}
-        </div>
+
 
         {/* Left: Index + Title */}
         <div>

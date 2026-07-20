@@ -54,7 +54,7 @@ export default function WhyChoose() {
               Dr. Suhas S. Kumar, MS (Gen Surg), FIAGES, FALS, Dip Lap, is an experienced Consultant General and Laparoscopic Surgeon. His practice is defined by surgical precision, state-of-the-art methods, and a dedicated path toward safe, quick recovery.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
-              <Link to="/contact" className="btn btn-primary">
+              <Link to="/contact" className="btn btn-premium">
                 Book Appointment
               </Link>
               <Link to="/about" className="btn btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -70,11 +70,11 @@ export default function WhyChoose() {
             whileInView="show"
             viewport={{ once: true }}
             style={{
-              background: 'var(--bg-primary)',
+              background: 'var(--bg-card)',
               padding: '2.5rem',
               borderRadius: '24px',
               border: '1px solid var(--border-subtle)',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+              boxShadow: 'var(--shadow-lg)'
             }}
           >
             <h3 className="h-3" style={{ marginBottom: '2rem', color: 'var(--accent-gold)' }}>Clinical Offerings</h3>

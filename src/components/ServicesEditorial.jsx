@@ -72,7 +72,7 @@ function ImageCanvas({ activeIndex }) {
       </AnimatePresence>
 
       {/* Bottom gradient overlay */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(6,11,17,0.85) 0%, rgba(6,11,17,0.1) 60%, transparent 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'var(--card-image-overlay-soft)' }} />
 
       {/* Bottom label inside image */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem 2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
@@ -121,7 +121,7 @@ function ImageCanvas({ activeIndex }) {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
       >
-        <div style={{ textAlign: 'center', color: '#060B11', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+        <div style={{ textAlign: 'center', color: 'var(--text-primary)', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
           Learn<br />More
         </div>
       </motion.div>
@@ -321,7 +321,7 @@ export default function ServicesEditorial() {
                               alt={service.title}
                               style={{ width: '100%', height: '240px', objectFit: 'cover', display: 'block' }}
                             />
-                            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1rem 1.5rem', background: 'linear-gradient(to top, rgba(6,11,17,0.9), transparent)' }}>
+                            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1rem 1.5rem', background: 'linear-gradient(to top, rgba(247,251,255,0.92), transparent)' }}>
                               <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.12em', color: 'var(--accent-gold)', textTransform: 'uppercase' }}>
                                 {service.tag}
                               </span>
