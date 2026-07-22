@@ -557,27 +557,53 @@
   }
 }
 
-/* ── Premium Animated Precision Pattern (Hero) ── */
+/* ── Premium DNA / Ribbon Flow Hero Background (Desktop Only) ── */
+@keyframes heroRibbonFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) rotate(0.5deg) scale(1.015);
+  }
+  100% {
+    transform: translateY(10px) rotate(-0.3deg) scale(0.995);
+  }
+}
+
+@keyframes heroRibbonPulse {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .hero-animated-pattern {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  display: none;
 }
 
 @media (min-width: 1024px) {
   .hero-animated-pattern {
-    /* Wavy Ocean Breeze Pattern */
-    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%23EAF7FF' d='M0,0 Q400,200 300,800 L0,800 Z'/%3E%3Cpath fill='%23BFE2FF' d='M0,0 Q300,350 200,800 L0,800 Z'/%3E%3Cpath fill='%237CC8FF' d='M0,0 Q200,500 100,800 L0,800 Z'/%3E%3C/svg%3E");
-    background-size: cover;
-    background-position: left center;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    filter: blur(60px); /* Blurs the pattern to blend borders smoothly */
-    transform: scale(1.1); /* Prevents blurred edges from bleeding inwards from the container boundary */
-    /* Only visible on the left side, fading out */
-    mask-image: linear-gradient(to right, black 0%, black 35%, transparent 60%);
-    -webkit-mask-image: linear-gradient(to right, black 0%, black 35%, transparent 60%);
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-ribbon-svg {
+    width: 100%;
+    height: 100%;
+    animation: heroRibbonFloat 22s ease-in-out infinite alternate;
+    transform-origin: 50% 50%;
+  }
+
+  .hero-ribbon-glow {
+    animation: heroRibbonPulse 12s ease-in-out infinite alternate;
   }
 }
 
