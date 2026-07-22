@@ -53,7 +53,7 @@
   display: none; /* hidden on mobile */
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .nav-links {
     display: flex;
     gap: 2rem;
@@ -86,7 +86,7 @@
   padding: 0.5rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .mobile-menu-btn {
     display: none;
   }
@@ -102,7 +102,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .cc-backdrop {
     display: block;
     position: fixed;
@@ -119,7 +119,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .cc-panel {
     display: flex;
     flex-direction: column;
@@ -421,7 +421,7 @@
   box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.08), 0 4px 20px rgba(15, 23, 42, 0.06);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .bottom-nav {
     display: none;
   }
@@ -461,7 +461,7 @@
 }
 
 /* Ensure content is not hidden behind bottom nav on mobile */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .app-container {
     padding-bottom: 0;
   }
@@ -474,7 +474,7 @@
 }
 
 /* Mobile Only tweaks — LIGHT MODE */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .hero-img-wrapper {
     opacity: 0.65;
   }
@@ -484,7 +484,7 @@
 }
 
 /* Mobile light-mode specific overrides */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   :root .hero-section,
   [data-theme='light'] .hero-section {
     background: linear-gradient(
@@ -563,27 +563,29 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background-image: repeating-linear-gradient(
-    90deg, 
-    transparent, 
-    transparent 40px, 
-    rgba(59, 130, 246, 0.08) 41px, 
-    transparent 42px
-  );
-  /* Only visible on the left side, fading out at 50% */
-  mask-image: linear-gradient(to right, black 0%, black 25%, transparent 50%);
-  -webkit-mask-image: linear-gradient(to right, black 0%, black 25%, transparent 50%);
-  animation: heroPinstripePan 30s linear infinite;
+}
+
+@media (min-width: 1024px) {
+  .hero-animated-pattern {
+    /* Wavy Ocean Breeze Pattern */
+    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%23EAF7FF' d='M0,0 Q400,200 300,800 L0,800 Z'/%3E%3Cpath fill='%23BFE2FF' d='M0,0 Q300,350 200,800 L0,800 Z'/%3E%3Cpath fill='%237CC8FF' d='M0,0 Q200,500 100,800 L0,800 Z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    filter: blur(60px); /* Blurs the pattern to blend borders smoothly */
+    transform: scale(1.1); /* Prevents blurred edges from bleeding inwards from the container boundary */
+    /* Only visible on the left side, fading out */
+    mask-image: linear-gradient(to right, black 0%, black 35%, transparent 60%);
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 35%, transparent 60%);
+  }
 }
 
 [data-theme='dark'] .hero-animated-pattern {
   display: none; /* Kept clean for light mode as requested */
 }
 
-@keyframes heroPinstripePan {
-  0% { background-position: 0px 0px; }
-  100% { background-position: 42px 0px; }
-}
+
 
 .hero-section {
   position: relative;
@@ -598,7 +600,7 @@
 
 .hero-overlay-bottom {
   background: 
-    linear-gradient(to right, #E0F7FA 15%, rgba(224, 247, 250, 0.85) 45%, rgba(224, 247, 250, 0.1) 100%);
+    linear-gradient(to right, #F8FCFF 15%, rgba(248, 252, 255, 0.9) 45%, rgba(248, 252, 255, 0.1) 100%);
 }
 
 .hero-overlay-top {
@@ -614,7 +616,7 @@
 }
 
 /* Desktop Only tweaks */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .hero-img-wrapper {
     transform: scaleX(-1);
     position: absolute !important;
@@ -668,7 +670,7 @@
   letter-spacing: -0.04em;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .story-card-inner {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -816,7 +818,7 @@
 }
 
 /* Mobile footer overrides */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .footer-top {
     padding: 36px 0 28px;
     gap: 32px;
@@ -868,7 +870,7 @@
   max-width: 900px; /* Keep it constrained for 2x2 */
   margin: 0 auto;
 }
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .certificate-grid {
     grid-template-columns: repeat(2, 1fr);
   }

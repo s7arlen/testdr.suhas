@@ -26,7 +26,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="hero-section" style={{ position: 'relative', height: '100vh', minHeight: '800px', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+    <section className="hero-section" style={{ position: 'relative', height: '100vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
       
       {/* Background Image & Overlay */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>

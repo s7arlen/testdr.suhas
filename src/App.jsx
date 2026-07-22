@@ -22,7 +22,7 @@ import FAQ from './components/FAQ';
 import DoctorDetailPage from './components/DoctorDetailPage';
 import BlogPage from './components/BlogPage';
 import Preloader from './components/Preloader';
-import ClinicTour from './components/ClinicTour';
+
 
 // Data from original App
 const serviceCatalog = [
@@ -159,7 +159,7 @@ function HomePage() {
       <AboutSection />
 
       <SpecializationsFilmStrip />
-      <ClinicTour />
+
       <Timeline />
       <Testimonials />
       <FAQ />

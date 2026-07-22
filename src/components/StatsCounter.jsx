@@ -72,24 +72,72 @@ export default function StatsCounter() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="stats-counter" ref={ref}>
-      <div className="stats-counter__grid">
-        {STATS.map((stat, i) => (
-          <StatItem key={stat.label} {...stat} index={i} inView={inView} />
-        ))}
+    <section className="stats-section-wrapper" ref={ref}>
+      <div className="stats-counter__glow" />
+      <div className="stats-counter">
+        <div className="stats-counter__highlight" />
+        <div className="stats-counter__grid">
+          {STATS.map((stat, i) => (
+            <StatItem key={stat.label} {...stat} index={i} inView={inView} />
+          ))}
+        </div>
       </div>
 
       <style>{`
-        .stats-counter {
-          background: var(--bg-secondary, #111A29);
-          border: 1px solid var(--border-subtle, rgba(242, 227, 198, 0.08));
-          border-radius: 24px;
-          padding: 56px 32px;
+        .stats-section-wrapper {
+          position: relative;
           max-width: 1120px;
           margin: 0 auto;
+          z-index: 10;
+          padding: 0 20px; /* safety padding for mobile */
+        }
+
+        .stats-counter__glow {
+          position: absolute;
+          inset: -40px;
+          z-index: 0;
+          background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+          pointer-events: none;
+          filter: blur(40px);
+        }
+
+        .stats-counter {
+          position: relative;
+          z-index: 1;
+          background: rgba(255, 255, 255, 0.58);
+          backdrop-filter: blur(32px);
+          -webkit-backdrop-filter: blur(32px);
+          border: 1px solid rgba(255, 255, 255, 0.75);
+          border-radius: 36px;
+          box-shadow: 
+            0 10px 30px rgba(30, 64, 175, 0.05),
+            0 40px 100px rgba(30, 64, 175, 0.10),
+            inset 0 0 1px rgba(255, 255, 255, 0.8);
+          padding: 56px 32px;
+          transition: all 350ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .stats-counter:hover {
+          transform: translateY(-4px);
+          background: rgba(255, 255, 255, 0.65);
+          box-shadow: 
+            0 15px 40px rgba(30, 64, 175, 0.08),
+            0 50px 120px rgba(30, 64, 175, 0.15),
+            inset 0 0 1px rgba(255, 255, 255, 0.9);
+        }
+
+        .stats-counter__highlight {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+          background: radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.15) 0%, transparent 40%);
+          border-radius: 36px;
+          pointer-events: none;
         }
 
         .stats-counter__grid {
+          position: relative;
+          z-index: 1;
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 0;
@@ -105,7 +153,7 @@ export default function StatsCounter() {
           position: relative;
         }
 
-        /* Champagne vertical dividers between items */
+        /* Elegant Glowing Dividers */
         .stats-counter__item:not(:last-child)::after {
           content: "";
           position: absolute;
@@ -113,28 +161,33 @@ export default function StatsCounter() {
           top: 50%;
           transform: translateY(-50%);
           width: 1px;
-          height: 48px;
+          height: 56px;
           background: linear-gradient(
             180deg,
             transparent,
-            var(--accent-gold, #F2E3C6) 50%,
+            rgba(59, 130, 246, 0.35),
             transparent
           );
-          opacity: 0.3;
         }
 
         .stats-counter__number {
           font-family: var(--font-display, "Playfair Display", serif);
           font-size: clamp(2rem, 4vw, 3.25rem);
-          font-weight: 700;
+          font-weight: 800;
           line-height: 1;
-          color: var(--accent-gold, #F2E3C6);
+          background: linear-gradient(135deg, #7EC3FF 0%, #3B82F6 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
           letter-spacing: -0.02em;
         }
 
         .stats-counter__suffix {
-          font-weight: 400;
-          opacity: 0.7;
+          font-weight: 800;
+          background: linear-gradient(135deg, #7EC3FF 0%, #3B82F6 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
         }
 
         .stats-counter__label {
@@ -142,17 +195,38 @@ export default function StatsCounter() {
           font-size: 0.7rem;
           font-weight: 500;
           text-transform: uppercase;
-          letter-spacing: 0.16em;
-          color: var(--text-secondary, #9BA3AF);
+          letter-spacing: 0.2em;
+          color: #64748B;
           line-height: 1.4;
           max-width: 160px;
         }
 
+        /* Dark mode support */
+        [data-theme='dark'] .stats-counter {
+          background: rgba(17, 24, 39, 0.58);
+          border-color: rgba(255, 255, 255, 0.1);
+          box-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.2),
+            0 40px 100px rgba(0, 0, 0, 0.3),
+            inset 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        [data-theme='dark'] .stats-counter:hover {
+          background: rgba(17, 24, 39, 0.65);
+          border-color: rgba(255, 255, 255, 0.15);
+          box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 0.25),
+            0 50px 120px rgba(0, 0, 0, 0.4),
+            inset 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        [data-theme='dark'] .stats-counter__label {
+          color: #94A3B8;
+        }
+
         /* ── Mobile 2×2 grid ── */
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
           .stats-counter {
             padding: 40px 20px;
-            border-radius: 18px;
+            border-radius: 28px;
           }
 
           .stats-counter__grid {

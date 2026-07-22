@@ -64,7 +64,7 @@ export default function Layout({ children }) {
       if (!footerRef.current) return;
       const baseHeight = footerRef.current.offsetHeight;
       // On mobile (<768px), add 70px for the bottom-nav bar so footer is fully visible
-      const isMobile = window.innerWidth < 768;
+      const isMobile = window.innerWidth < 1024;
       setFooterHeight(baseHeight + (isMobile ? 70 : 0));
     };
 
@@ -167,16 +167,33 @@ export default function Layout({ children }) {
                     <Activity size={22} strokeWidth={2.2} />
                     <span>Dr. Suhas</span>
                   </div>
-                  <motion.button
-                    className="cc-close-btn"
-                    onClick={() => setMobileMenuOpen(false)}
-                    aria-label="Close menu"
-                    whileTap={{ scale: 0.9 }}
-                    exit={{ rotate: 90 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <X size={18} strokeWidth={2.5} />
-                  </motion.button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <button
+                      type="button"
+                      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                      className="theme-switch"
+                      aria-label="Toggle Dark Mode"
+                      style={{ transform: 'scale(0.85)' }}
+                    >
+                      <div className="theme-switch-thumb" />
+                      <div className="theme-switch-icon sun">
+                        <Sun size={18} />
+                      </div>
+                      <div className="theme-switch-icon moon">
+                        <Moon size={18} />
+                      </div>
+                    </button>
+                    <motion.button
+                      className="cc-close-btn"
+                      onClick={() => setMobileMenuOpen(false)}
+                      aria-label="Close menu"
+                      whileTap={{ scale: 0.9 }}
+                      exit={{ rotate: 90 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <X size={18} strokeWidth={2.5} />
+                    </motion.button>
+                  </div>
                 </div>
 
                 {/* Navigation Items */}

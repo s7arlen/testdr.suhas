@@ -47,7 +47,7 @@ export default function FloatingWhatsApp() {
 
       <style>{`
         @supports (bottom: env(safe-area-inset-bottom)) {
-          @media (max-width: 768px) {
+          @media (max-width: 1023px) {
             a[aria-label="Chat on WhatsApp"] {
               bottom: calc(100px + env(safe-area-inset-bottom, 0px)) !important;
             }

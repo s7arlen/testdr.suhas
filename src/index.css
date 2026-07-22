@@ -96,18 +96,19 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0;
   font-family: var(--font-sans);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  overflow-x: hidden;
-  position: relative;
 }
 
 /* Subtle premium grain noise overlay */
@@ -238,7 +239,7 @@ img {
   position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   :root {
     --section-py: 80px;
   }
@@ -454,7 +455,7 @@ img {
 .show-mobile {
   display: none !important;
 }
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .show-mobile {
     display: flex !important;
   }
