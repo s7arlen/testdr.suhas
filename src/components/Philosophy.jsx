@@ -404,27 +404,29 @@ export default function Philosophy() {
                         {card.description}
                       </motion.p>
 
-                      {/* Large Watermark Number */}
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 0.08, scale: 1 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        style={{
-                          position: 'absolute',
-                          right: '2rem',
-                          bottom: '-2rem',
-                          fontFamily: 'var(--font-display)',
-                          fontSize: '12rem',
-                          fontWeight: 800,
-                          lineHeight: 1,
-                          color: titleColor,
-                          userSelect: 'none',
-                          pointerEvents: 'none',
-                          letterSpacing: '-0.05em',
-                        }}
-                      >
-                        {card.number}
-                      </motion.div>
+                      {/* Large Watermark Number (Mobile Only) */}
+                      {isMobile && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{ opacity: 0.08, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          style={{
+                            position: 'absolute',
+                            right: '2rem',
+                            bottom: '-2rem',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '12rem',
+                            fontWeight: 800,
+                            lineHeight: 1,
+                            color: titleColor,
+                            userSelect: 'none',
+                            pointerEvents: 'none',
+                            letterSpacing: '-0.05em',
+                          }}
+                        >
+                          {card.number}
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
