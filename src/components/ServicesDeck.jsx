@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -63,13 +64,15 @@ const services = [
 
 const VISIBLE_BEHIND = 2; // how many cards peek behind
 
+
+
 /* ─── Single Card ─── */
-function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction }) {
+function DeckCard({ service, index, totalBehind, isTop, onDismiss, direction, isMobile }) {
   const isVisible = index <= totalBehind;
 
   // Peek-behind scale / offset for cards under the top
-  const scale = isTop ? 1 : 1 - index * 0.045;
-  const yOffset = isTop ? 0 : index * 18;
+  const scale = isTop ? 1 : 1 - index * (isMobile ? 0.03 : 0.045);
+  const yOffset = isTop ? 0 : index * (isMobile ? 10 : 18);
   const opacity = isTop ? 1 : Math.max(0.2, 1 - index * 0.28);
 
   return (
@@ -205,6 +208,19 @@ export default function ServicesDeck() {
 
   const total = services.length;
 
+  // Mobile detection inside component
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.matchMedia('(max-width: 1023px)').matches : false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 1023px)');
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  // Adjust visible cards based on device
+  const effectiveVisibleBehind = isMobile ? 1 : VISIBLE_BEHIND;
+
   const goNext = useCallback(() => {
     if (exiting) return;
     setDirection('next');
@@ -226,7 +242,7 @@ export default function ServicesDeck() {
   }, [exiting, total]);
 
   // Build ordered visible cards: [current, next, next+1, ...]
-  const orderedIndices = Array.from({ length: Math.min(VISIBLE_BEHIND + 1, total) }, (_, i) =>
+  const orderedIndices = Array.from({ length: Math.min(effectiveVisibleBehind + 1, total) }, (_, i) =>
     (currentIndex + i) % total
   );
 
@@ -278,9 +294,10 @@ export default function ServicesDeck() {
                   key={svcIndex}
                   service={services[svcIndex]}
                   index={stackPos}
-                  totalBehind={VISIBLE_BEHIND}
+                  totalBehind={effectiveVisibleBehind}
                   isTop={isTop}
                   direction={direction}
+                  isMobile={isMobile}
                 />
               );
             })}

@@ -82,6 +82,21 @@ const specializations = [
 /* MOBILE: Vertical Card Layout  */
 /* ============================= */
 function MobileFilmStrip() {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    // Scroll to the second card slightly after mount so the user sees the movement
+    // and understands it's a scrollable carousel.
+    const timer = setTimeout(() => {
+      if (scrollRef.current && scrollRef.current.children.length > 1) {
+        const secondCard = scrollRef.current.children[1];
+        const scrollAmount = secondCard.offsetLeft - scrollRef.current.offsetLeft - 16; // 16px is the padding
+        scrollRef.current.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section style={{ backgroundColor: 'var(--bg-secondary)', padding: '4rem 0 3rem' }}>
       <div className="container">
@@ -98,6 +113,7 @@ function MobileFilmStrip() {
 
         {/* Horizontal Snap Scroll */}
         <div 
+          ref={scrollRef}
           className="filmstrip-mobile-scroll"
           style={{
             display: 'flex',
@@ -249,7 +265,7 @@ function MobileFilmStrip() {
 /* DESKTOP: Horizontal Film Strip   */
 /* ================================ */
 function DesktopFilmStrip() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const handleNext = () => {
     setActiveIndex((prev) => Math.min(prev + 1, specializations.length - 1));

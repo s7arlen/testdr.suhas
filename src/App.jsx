@@ -7,7 +7,6 @@ import './App.css';
 // Components
 import Layout from './components/Layout';
 import Hero from './components/Hero';
-import DoctorStory from './components/DoctorStory';
 import AboutSection from './components/AboutSection';
 import ServicesEditorial from './components/ServicesEditorial';
 import ServicesDeck from './components/ServicesDeck';
@@ -18,6 +17,7 @@ import GalleryComponent from './components/Gallery';
 
 // New Sections & Pages
 import StatsCounter from './components/StatsCounter';
+import Philosophy from './components/Philosophy';
 import FAQ from './components/FAQ';
 import DoctorDetailPage from './components/DoctorDetailPage';
 import BlogPage from './components/BlogPage';
@@ -155,7 +155,7 @@ function HomePage() {
     <PageWrapper>
       <Hero />
       <StatsCounter />
-      <DoctorStory />
+      <Philosophy />
       <AboutSection />
 
       <SpecializationsFilmStrip />
