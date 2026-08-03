@@ -350,8 +350,6 @@ export default function Layout({ children }) {
                 <span>Powered by</span>
                 <span className="appvertex-badge">A</span>
                 <span style={{ fontWeight: 600 }}>Appvertex</span>
-                <span className="footer-dot">·</span>
-                <span>Built by Leston &amp; Lenstar</span>
               </div>
             </div>
 

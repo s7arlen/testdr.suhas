@@ -9,7 +9,7 @@ import Layout from './components/Layout';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import ServicesEditorial from './components/ServicesEditorial';
-import ServicesDeck from './components/ServicesDeck';
+import ServicesCategorized from './components/ServicesCategorized';
 import SpecializationsFilmStrip from './components/SpecializationsFilmStrip';
 import Timeline from './components/Timeline';
 import Testimonials from './components/Testimonials';
@@ -182,7 +182,7 @@ function ServicesPage() {
   return (
     <PageWrapper>
       <div style={{ paddingTop: '80px' }}>
-        <ServicesDeck />
+        <ServicesCategorized />
       </div>
     </PageWrapper>
   );
