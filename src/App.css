@@ -610,149 +610,346 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/* DOCTOR DETAIL — CERTIFICATE CARDS                                          */
+/* DOCTOR DETAIL — OLD CERTIFICATE CARDS (kept for fallback, not used)       */
 /* -------------------------------------------------------------------------- */
 
-.certificate-grid {
+.certificate-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; }
+@media (max-width: 1100px) { .certificate-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 600px)  { .certificate-grid { grid-template-columns: 1fr; } }
+
+/* -------------------------------------------------------------------------- */
+/* LUXURY CREDENTIALS — COMPACT ELEGANT SHOWCASE                             */
+/* -------------------------------------------------------------------------- */
+
+/* ── Section Wrapper ── */
+.lux-credentials-section {
+  position: relative;
+  padding: 4.5rem 0 5rem;
+  overflow: hidden;
+  background: #FCFBF8;
+}
+
+/* ── Subtle Background Layer ── */
+.lux-bg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lux-bg-paper {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(200, 169, 106, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.lux-bg-radial {
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(200, 169, 106, 0.04) 0%, rgba(252, 251, 248, 0) 70%);
+}
+
+.lux-spotlight {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 169, 106, 0.03) 0%, transparent 65%);
+  pointer-events: none;
+  transition: left 0.25s ease-out, top 0.25s ease-out;
+}
+
+.lux-watermark-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ── Container ── */
+.lux-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section Heading ── */
+.lux-heading-wrap {
+  text-align: center;
+  margin-bottom: 2.75rem;
+}
+
+.lux-eyebrow {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.675rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #C8A96A;
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+.lux-h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: #18253A;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.lux-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: #64748B;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Credentials Grid ── */
+.lux-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
-@media (max-width: 1100px) {
-  .certificate-grid {
+@media (max-width: 1150px) {
+  .lux-cards-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 640px) {
+  .lux-cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    gap: 1.15rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .lux-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lux-card-wrapper {
+    flex: 0 0 82%;
+    max-width: 290px;
+    scroll-snap-align: center;
   }
 }
 
-@media (max-width: 600px) {
-  .certificate-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.certificate-card {
-  position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.cert-shimmer {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.45) 50%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  background-size: 300% 300%;
-  animation: certShimmer 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-  border-radius: 20px;
-}
-
-@keyframes certShimmer {
-  0%   { background-position: 200% 200%; }
-  50%  { background-position: -50% -50%; }
-  100% { background-position: 200% 200%; }
-}
-
-.certificate-frame {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(37, 99, 235, 0.12);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), inset 0 1px 0 rgba(255,255,255,0.8);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.lux-card-wrapper {
   height: 100%;
 }
 
-[data-theme='dark'] .certificate-frame {
-  background: rgba(17, 26, 41, 0.7);
-  border-color: rgba(90, 174, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-.certificate-card:hover .certificate-frame {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 48px rgba(37, 99, 235, 0.14), inset 0 1px 0 rgba(255,255,255,0.9);
-}
-
-.certificate-inner {
+/* ── Plaque Card ── */
+.lux-plaque {
   position: relative;
+  border-radius: 20px;
+  background: #FCFBF8;
+  border: 1px solid #E7DCC6;
+  box-shadow: 0 12px 30px rgba(30, 41, 59, 0.03), 0 1px 3px rgba(0, 0, 0, 0.015);
+  padding: 2rem 1.35rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  min-height: 330px;
   height: 100%;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
-/* Ornamental corner brackets */
-.cert-corner {
+.lux-plaque:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: #D8C29D;
+  box-shadow: 0 20px 40px rgba(30, 41, 59, 0.06);
+}
+
+/* Top Edge Soft Reflection */
+.lux-shimmer {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border-color: rgba(37, 99, 235, 0.25);
-  border-style: solid;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 169, 106, 0.4) 50%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  transition: opacity 0.35s ease, height 0.35s ease;
 }
-.cert-corner.tl { top: -1rem;  left: -1rem;  border-width: 2px 0 0 2px; }
-.cert-corner.tr { top: -1rem;  right: -1rem; border-width: 2px 2px 0 0; }
-.cert-corner.bl { bottom: -1rem; left: -1rem;  border-width: 0 0 2px 2px; }
-.cert-corner.br { bottom: -1rem; right: -1rem; border-width: 0 2px 2px 0; }
 
-.cert-header {
+.lux-plaque:hover .lux-shimmer {
+  opacity: 1;
+  height: 2.5px;
+}
+
+/* ── Top Circle Icon ── */
+.lux-icon-circle-wrap {
+  margin-bottom: 1.25rem;
+}
+
+.lux-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FAF7F2;
+  border: 1px solid #E7DCC6;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
 }
 
-.cert-icon {
-  color: var(--primary-blue);
-  flex-shrink: 0;
+.lux-plaque:hover .lux-icon-circle {
+  transform: scale(1.06);
+  border-color: #C8A96A;
 }
 
-.cert-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--primary-blue);
-  opacity: 0.7;
+.lux-icon-svg {
+  transition: stroke 0.35s ease;
 }
 
-.cert-title {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.cert-desc {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin: 0;
+/* ── Plaque Body ── */
+.lux-plaque-body {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
 }
 
-.cert-seal {
-  margin-top: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-blue), #58A8FF);
-  box-shadow: 0 4px 12px rgba(45, 107, 255, 0.3);
+.lux-category-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.575rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C8A96A;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
 }
 
-.cert-seal-icon {
-  color: #fff;
+.lux-abbr {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #18253A;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.65rem;
+  line-height: 1.1;
 }
+
+.lux-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: #64748B;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 210px;
+}
+
+/* ── Clean Card Footer ── */
+.lux-card-footer {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lux-footer-divider {
+  width: 100%;
+  height: 1px;
+  background: #EFE9DF;
+  margin-bottom: 0.85rem;
+}
+
+.lux-qualification-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.675rem;
+  font-weight: 500;
+  color: #64748B;
+  letter-spacing: 0.01em;
+}
+
+/* Dark Mode Adaptations */
+[data-theme='dark'] .lux-credentials-section {
+  background: #0B111E;
+}
+
+[data-theme='dark'] .lux-bg-paper {
+  background-image: radial-gradient(rgba(200, 169, 106, 0.05) 1px, transparent 1px);
+}
+
+[data-theme='dark'] .lux-h2 {
+  color: #F1E8D0;
+}
+
+[data-theme='dark'] .lux-subtitle {
+  color: #94A3B8;
+}
+
+[data-theme='dark'] .lux-plaque {
+  background: #111A29;
+  border-color: #243248;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='dark'] .lux-plaque:hover {
+  border-color: #C8A96A;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme='dark'] .lux-icon-circle {
+  background: #162235;
+  border-color: #273752;
+}
+
+[data-theme='dark'] .lux-abbr {
+  color: #F1E8D0;
+}
+
+[data-theme='dark'] .lux-desc {
+  color: #94A3B8;
+}
+
+[data-theme='dark'] .lux-footer-divider {
+  background: #1E2D44;
+}
+
+[data-theme='dark'] .lux-qualification-badge {
+  color: #94A3B8;
+}
+
+
+

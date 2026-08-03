@@ -1,14 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, BookOpen, GraduationCap, Briefcase, MapPin } from 'lucide-react';
+import { ArrowRight, BookOpen, GraduationCap, Briefcase, MapPin } from 'lucide-react';
+import LuxuryCredentials from './LuxuryCredentials';
 
-const credentials = [
-  { label: 'MS (Gen Surg)', desc: 'Master of Surgery — General Surgery', icon: GraduationCap },
-  { label: 'FIAGES', desc: 'Fellow of Indian Association of Gastrointestinal Endo-Surgeons', icon: Award },
-  { label: 'FALS', desc: 'Fellow of Advanced Laparoscopic Surgery', icon: Award },
-  { label: 'Dip Lap', desc: 'Diploma in Laparoscopic Surgery', icon: BookOpen },
-];
+
 
 const milestones = [
   { year: '2013', title: 'Medical Degree', desc: 'Completed MBBS from a prestigious medical university' },
@@ -68,52 +64,8 @@ export default function DoctorDetailPage() {
         </div>
       </section>
 
-      {/* Credentials */}
-      <section className="section" style={{ background: 'linear-gradient(180deg, #F8FAFC, #F3F7FC, #EDF4FF)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <div className="text-eyebrow" style={{ marginBottom: '1rem', color: '#2563EB' }}>Qualifications</div>
-            <h2 className="h-2" style={{ color: '#0F172A' }}>Professional Credentials</h2>
-          </div>
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="certificate-grid"
-          >
-            {credentials.map((cred, i) => {
-              const IconComp = cred.icon;
-              return (
-                <motion.div key={i} variants={fadeUp} className="certificate-card">
-                  <div className="cert-shimmer" />
-                  <div className="certificate-frame">
-                    <div className="certificate-inner">
-                      {/* Ornamental Corners */}
-                      <div className="cert-corner tl" />
-                      <div className="cert-corner tr" />
-                      <div className="cert-corner bl" />
-                      <div className="cert-corner br" />
-
-                      <div className="cert-header">
-                        <IconComp size={36} className="cert-icon" />
-                        <span className="cert-label">Professional Qualification</span>
-                      </div>
-                      
-                      <h3 className="cert-title">{cred.label}</h3>
-                      <p className="cert-desc">{cred.desc}</p>
-                      
-                      <div className="cert-seal">
-                        <Award size={20} className="cert-seal-icon" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
+      {/* Credentials — Luxury Award Showcase */}
+      <LuxuryCredentials />
 
       {/* Bio & Background */}
       <section className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
