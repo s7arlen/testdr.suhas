@@ -30,10 +30,10 @@
   --nav-glass: rgba(255, 255, 255, 0.78);
   --card-glass: rgba(255, 255, 255, 0.82);
 
-  --card-image-overlay: linear-gradient(160deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.95) 100%);
-  --card-image-overlay-soft: linear-gradient(to top, rgba(247,251,255,0.92) 0%, rgba(247,251,255,0.55) 60%, rgba(247,251,255,0.1) 100%);
-  --card-image-overlay-frame: linear-gradient(to bottom, rgba(247,251,255,0.65) 0%, rgba(247,251,255,0.95) 100%);
-  --card-overlay-surface: rgba(255,255,255,0.70);
+  --card-image-overlay: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.65) 50%, rgba(255,255,255,0.94) 100%);
+  --card-image-overlay-soft: linear-gradient(to top, rgba(247,251,255,0.95) 0%, rgba(247,251,255,0.45) 60%, rgba(247,251,255,0.1) 100%);
+  --card-image-overlay-frame: linear-gradient(to bottom, rgba(247,251,255,0.35) 0%, rgba(247,251,255,0.95) 100%);
+  --card-overlay-surface: rgba(255,255,255,0.85);
 
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -81,10 +81,10 @@
   --nav-glass: rgba(6, 11, 17, 0.7);
   --card-glass: rgba(17, 26, 41, 0.6);
 
-  --card-image-overlay: linear-gradient(160deg, rgba(6,11,17,0.96) 0%, rgba(6,11,17,0.90) 50%, rgba(6,11,17,0.72) 100%);
-  --card-image-overlay-soft: linear-gradient(to top, rgba(6,11,17,0.88) 0%, rgba(6,11,17,0.72) 60%, rgba(6,11,17,0.18) 100%);
-  --card-image-overlay-frame: linear-gradient(to bottom, rgba(6,11,17,0.72) 0%, rgba(6,11,17,0.95) 100%);
-  --card-overlay-surface: rgba(255,255,255,0.08);
+  --card-image-overlay: linear-gradient(180deg, rgba(6,11,17,0.3) 0%, rgba(6,11,17,0.7) 50%, rgba(6,11,17,0.95) 100%);
+  --card-image-overlay-soft: linear-gradient(to top, rgba(6,11,17,0.92) 0%, rgba(6,11,17,0.5) 60%, rgba(6,11,17,0.1) 100%);
+  --card-image-overlay-frame: linear-gradient(to bottom, rgba(6,11,17,0.35) 0%, rgba(6,11,17,0.95) 100%);
+  --card-overlay-surface: rgba(255,255,255,0.12);
 
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 12px 24px rgba(0, 0, 0, 0.35);
