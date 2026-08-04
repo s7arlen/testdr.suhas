@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, GraduationCap, Briefcase, MapPin } from 'lucide-react';
+import { ArrowRight, BookOpen, GraduationCap, Briefcase, MapPin, ChevronDown, ExternalLink } from 'lucide-react';
 import LuxuryCredentials from './LuxuryCredentials';
 
 
@@ -16,11 +16,36 @@ const milestones = [
 ];
 
 const publications = [
-  'Comparative study of laparoscopic vs open appendectomy outcomes',
-  'Role of minimally invasive surgery in emergency abdominal conditions',
-  'Outcomes of laparoscopic hernia repair: A retrospective analysis',
-  'Advances in thyroid surgery techniques and patient recovery',
-  'Diabetic foot management: Surgical interventions and prevention strategies',
+  {
+    title: 'Comparative study of laparoscopic vs open appendectomy outcomes',
+    year: '2022',
+    abstract: 'This study evaluates the post-operative outcomes, recovery time, and complication rates of laparoscopic appendectomy compared to traditional open surgery. Findings indicate a significant reduction in hospital stay and faster return to normal activities for the laparoscopic group.',
+    link: '#'
+  },
+  {
+    title: 'Role of minimally invasive surgery in emergency abdominal conditions',
+    year: '2021',
+    abstract: 'An exploration of the increasing application of minimally invasive techniques in emergency settings, such as perforated viscus and acute cholecystitis, highlighting the benefits of reduced surgical trauma in critical care.',
+    link: '#'
+  },
+  {
+    title: 'Outcomes of laparoscopic hernia repair: A retrospective analysis',
+    year: '2020',
+    abstract: 'A comprehensive review of 500 cases of laparoscopic hernia repair focusing on recurrence rates and chronic pain, establishing the long-term efficacy and safety profile of the procedure.',
+    link: '#'
+  },
+  {
+    title: 'Advances in thyroid surgery techniques and patient recovery',
+    year: '2019',
+    abstract: 'A detailed analysis of nerve monitoring and minimal access approaches in thyroidectomy. The paper discusses strategies to minimize voice changes and hypocalcemia post-surgery.',
+    link: '#'
+  },
+  {
+    title: 'Diabetic foot management: Surgical interventions and prevention strategies',
+    year: '2018',
+    abstract: 'This paper outlines a multidisciplinary approach to diabetic foot ulcers, detailing surgical debridement techniques, vascular assessment, and long-term preventative care to avoid amputations.',
+    link: '#'
+  },
 ];
 
 const fadeUp = {
@@ -34,6 +59,37 @@ const stagger = {
 };
 
 export default function DoctorDetailPage() {
+  const [expandedPubIndex, setExpandedPubIndex] = useState(null);
+
+  // Parallax CTA State
+  const ctaRef = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 25 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 25 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["6deg", "-6deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-6deg", "6deg"]);
+
+  const handleMouseMove = (e) => {
+    if (!ctaRef.current) return;
+    const rect = ctaRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <>
       {/* Hero */}
@@ -147,24 +203,88 @@ export default function DoctorDetailPage() {
             <h2 className="h-2">Published <span className="text-gradient">contributions</span></h2>
           </div>
 
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true }}>
-            {publications.map((pub, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                style={{
-                  padding: '1.5rem 2rem',
-                  borderBottom: '1px solid var(--border-subtle)',
-                  display: 'flex', alignItems: 'flex-start', gap: '1.5rem',
-                }}
-              >
-                <span style={{ color: 'var(--accent-gold)', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '0.875rem', flexShrink: 0, marginTop: '2px' }}>
-                  0{i + 1}
-                </span>
-                <p className="text-body" style={{ margin: 0 }}>{pub}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div style={{ borderTop: '1px solid var(--border-subtle)' }}>
+            {publications.map((pub, i) => {
+              const isExpanded = expandedPubIndex === i;
+              return (
+                <div key={i} style={{ borderBottom: '1px solid var(--border-subtle)' }}>
+                  <button
+                    onClick={() => setExpandedPubIndex(isExpanded ? null : i)}
+                    style={{
+                      width: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1.5rem',
+                      padding: '1.75rem 1rem',
+                      background: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: isExpanded ? 'rgba(0,0,0,0.015)' : 'transparent',
+                    }}
+                    onMouseEnter={(e) => {
+                       if(!isExpanded) e.currentTarget.style.backgroundColor = 'var(--bg-secondary)';
+                    }}
+                    onMouseLeave={(e) => {
+                       if(!isExpanded) e.currentTarget.style.backgroundColor = 'transparent';
+                    }}
+                  >
+                    <span style={{ color: 'var(--accent-gold)', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1rem', flexShrink: 0 }}>
+                      0{i + 1}
+                    </span>
+                    <h4 style={{ 
+                      fontFamily: 'var(--font-display)', 
+                      fontSize: '1.1rem', 
+                      fontWeight: 600, 
+                      color: isExpanded ? 'var(--accent-gold)' : 'var(--text-primary)', 
+                      margin: 0, 
+                      flex: 1,
+                      transition: 'color 0.3s ease'
+                    }}>
+                      {pub.title}
+                    </h4>
+                    <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                      <ChevronDown size={20} style={{ color: 'var(--text-secondary)' }} />
+                    </motion.div>
+                  </button>
+                  
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div style={{ 
+                          padding: '0 1rem 1.75rem 4.1rem',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: '1.25rem',
+                          background: 'rgba(0,0,0,0.015)'
+                        }}>
+                           <div style={{ display: 'inline-flex', alignItems: 'center', background: 'var(--bg-secondary)', padding: '0.3rem 0.7rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', letterSpacing: '0.05em', alignSelf: 'flex-start', border: '1px solid var(--border-subtle)' }}>
+                              YEAR: {pub.year}
+                           </div>
+                           <p className="text-body" style={{ margin: 0, fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}>
+                             {pub.abstract}
+                           </p>
+                           <a href={pub.link} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-gold)', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', alignSelf: 'flex-start', transition: 'opacity 0.2s', paddingBottom: '0.2rem', borderBottom: '1px solid var(--accent-gold)' }}
+                              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+                           >
+                             Read Full Paper <ExternalLink size={16} />
+                           </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -203,15 +323,111 @@ export default function DoctorDetailPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section" style={{ backgroundColor: 'var(--bg-primary)', textAlign: 'center' }}>
-        <div className="container" style={{ maxWidth: '600px' }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="h-2" style={{ marginBottom: '1.5rem' }}>Ready to discuss your care?</h2>
-            <p className="text-lead" style={{ marginBottom: '2.5rem' }}>Schedule a consultation with Dr. Suhas for personalised surgical advice and compassionate support.</p>
-            <Link to="/contact" className="btn btn-premium">
-              Book a Consultation <ArrowRight size={18} />
-            </Link>
+      {/* Premium CTA Section */}
+      <section 
+        style={{ 
+          position: 'relative', 
+          padding: '6rem 0', 
+          textAlign: 'center',
+          background: 'var(--bg-secondary)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Subtle Background Pattern - Animated */}
+        <motion.div 
+          animate={{ backgroundPosition: ['0px 0px', '24px 24px'] }}
+          transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: 0.4,
+            backgroundImage: `radial-gradient(var(--border-subtle) 1px, transparent 1px)`,
+            backgroundSize: '24px 24px',
+            pointerEvents: 'none'
+          }}
+        />
+        {/* Soft Glow - Animated */}
+        <motion.div 
+          animate={{ opacity: [0.5, 0.8, 0.5], scale: [0.95, 1.05, 0.95] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '600px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(45,107,255,0.06) 0%, transparent 70%)',
+            pointerEvents: 'none',
+            zIndex: 0
+          }}
+        />
+
+        <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '700px', perspective: '1200px' }}>
+          <motion.div 
+            ref={ctaRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            initial="hidden" 
+            whileInView="show" 
+            viewport={{ once: true, margin: '-50px' }}
+            variants={{
+              hidden: { opacity: 0, y: 30, scale: 0.98 },
+              show: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                transition: { 
+                  duration: 0.6, 
+                  ease: [0.22, 1, 0.36, 1],
+                  staggerChildren: 0.15,
+                  delayChildren: 0.2
+                } 
+              }
+            }}
+            style={{
+              rotateX,
+              rotateY,
+              transformStyle: "preserve-3d",
+              background: 'var(--bg-primary)',
+              padding: '4rem 2rem',
+              borderRadius: '24px',
+              border: '1px solid var(--border-subtle)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.06), 0 2px 10px rgba(0,0,0,0.03)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              position: 'relative'
+            }}
+          >
+            {/* Inner accent line */}
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '3px', background: 'linear-gradient(90deg, var(--accent-gold), var(--primary-blue))', borderRadius: '24px 24px 0 0' }} />
+
+            <motion.div style={{ transform: "translateZ(50px)", width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <motion.h2 
+                variants={{ hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }} 
+                className="h-2" 
+                style={{ marginBottom: '1.25rem' }}
+              >
+                Ready to discuss <span className="text-gradient">your care?</span>
+              </motion.h2>
+              
+              <motion.p 
+                variants={{ hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+                className="text-lead" 
+                style={{ marginBottom: '2.5rem', maxWidth: '480px' }}
+              >
+                Schedule a consultation with Dr. Suhas for personalised surgical advice and compassionate support.
+              </motion.p>
+              
+              <motion.div variants={{ hidden: { opacity: 0, y: 15 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 15px 35px rgba(212,175,55,0.3)' }} whileTap={{ scale: 0.95 }} style={{ borderRadius: '99px' }}>
+                  <Link to="/contact" className="btn btn-premium" style={{ padding: '0.85rem 2.2rem', fontSize: '1rem', display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    Book a Consultation <ArrowRight size={18} />
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

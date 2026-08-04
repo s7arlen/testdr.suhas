@@ -62,10 +62,13 @@ export default function Layout({ children }) {
     
     const updateHeight = () => {
       if (!footerRef.current) return;
-      const baseHeight = footerRef.current.offsetHeight;
-      // On mobile (<768px), add 70px for the bottom-nav bar so footer is fully visible
       const isMobile = window.innerWidth < 1024;
-      setFooterHeight(baseHeight + (isMobile ? 70 : 0));
+      if (isMobile) {
+        // Disable curtain reveal on mobile
+        setFooterHeight(0);
+      } else {
+        setFooterHeight(footerRef.current.offsetHeight);
+      }
     };
 
     const observer = new ResizeObserver(updateHeight);
@@ -253,26 +256,42 @@ export default function Layout({ children }) {
         </main>
       </div>
 
-      {/* FIXED FOOTER */}
+      {/* FOOTER */}
       <footer 
         ref={footerRef}
         style={{ 
-          position: 'fixed', 
+          position: footerHeight > 0 ? 'fixed' : 'relative',
           bottom: 0, 
           left: 0,
           right: 0,
           zIndex: 0,
           background: 'var(--bg-secondary)', 
-          overflow: 'hidden'
+          overflow: 'hidden',
+          paddingBottom: footerHeight === 0 ? '70px' : '0' // Clear bottom nav on mobile
         }}
       >
         {/* Gold accent top line */}
         <div style={{ height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent-gold), transparent)' }} />
 
-        <div className="container footer-top">
+        <motion.div 
+          className="container footer-top"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: { 
+              opacity: 1,
+              transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+            }
+          }}
+        >
           
           {/* Col 1 — Brand + CTA */}
-          <div className="footer-brand-col">
+          <motion.div 
+            className="footer-brand-col"
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } }}
+          >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem' }}>
               <Activity size={22} style={{ color: 'var(--accent-gold)' }} />
               <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '1.6rem', letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Dr. Suhas S Kumar</span>
@@ -283,20 +302,23 @@ export default function Layout({ children }) {
             <Link to="/contact" className="btn btn-premium" style={{ fontSize: '0.875rem', padding: '0.65rem 1.4rem' }}>
               Book Consultation <ArrowRight size={16} />
             </Link>
-          </div>
+          </motion.div>
 
           {/* Col 2 — Contact & Locations */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <motion.div 
+            style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } }}
+          >
             <div>
               <div className="footer-section-label">Contact</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                 <a href="tel:9035942513" className="footer-contact-link">
                   <span className="footer-icon-wrap"><Phone size={15} /></span>
-                  +91 90359 42513
+                  <span className="footer-link-text">+91 90359 42513</span>
                 </a>
                 <a href="mailto:suhassk2@gmail.com" className="footer-contact-link">
                   <span className="footer-icon-wrap"><Mail size={15} /></span>
-                  suhassk2@gmail.com
+                  <span className="footer-link-text">suhassk2@gmail.com</span>
                 </a>
               </div>
             </div>
@@ -306,18 +328,18 @@ export default function Layout({ children }) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div className="footer-contact-link" style={{ alignItems: 'flex-start' }}>
                   <span className="footer-icon-wrap" style={{ marginTop: '2px' }}><MapPin size={15} /></span>
-                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Deepak Hospital</strong><br/>33rd Cross Rd, 7th Block, Jayanagar</span>
+                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Deepak Hospital</strong><br/><span className="footer-link-text">33rd Cross Rd, 7th Block, Jayanagar</span></span>
                 </div>
                 <div className="footer-contact-link" style={{ alignItems: 'flex-start' }}>
                   <span className="footer-icon-wrap" style={{ marginTop: '2px' }}><MapPin size={15} /></span>
-                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Dermapulse Clinic</strong><br/>719/25, 10th A Main, 4th Block, Jayanagar</span>
+                  <span><strong style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Dermapulse Clinic</strong><br/><span className="footer-link-text">719/25, 10th A Main, 4th Block, Jayanagar</span></span>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 3 — Social */}
-          <div>
+          <motion.div variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } } }}>
             <div className="footer-section-label">Follow Us</div>
             <p className="text-body" style={{ marginBottom: '1.25rem', fontSize: '0.85rem', lineHeight: 1.6 }}>
               Stay connected for surgical updates and patient stories.
@@ -329,14 +351,24 @@ export default function Layout({ children }) {
                 { label: 'TW', href: 'https://twitter.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg> },
                 { label: 'LI', href: 'https://linkedin.com', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> },
               ].map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer" className="footer-social-btn" aria-label={s.label}>
+                <motion.a 
+                  key={i} 
+                  href={s.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="footer-social-btn" 
+                  aria-label={s.label}
+                  whileHover={{ scale: 1.15, y: -4, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                >
                   {s.icon}
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
           
-        </div>
+        </motion.div>
         
         {/* Footer Bottom Bar */}
         <div className="footer-bottom-bar">

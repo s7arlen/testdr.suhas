@@ -121,6 +121,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.div 
+            className="hero-cta-row"
             style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '4rem' }}
             variants={fadeUp}
           >

@@ -250,6 +250,24 @@ img {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  .h-display {
+    font-size: clamp(2.3rem, 5.6vw, 3.35rem);
+  }
+
+  .h-1 {
+    font-size: clamp(1.8rem, 4.2vw, 2.7rem);
+  }
+
+  .h-2 {
+    font-size: clamp(1.55rem, 3.3vw, 2.2rem);
+  }
+
+  .section {
+    padding-block: 100px;
+  }
+}
+
 /* Premium Buttons */
 .btn {
   display: inline-flex;
