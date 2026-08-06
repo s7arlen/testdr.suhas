@@ -159,7 +159,7 @@ function KeywordSpan({ kw, onEnter, onLeave, isMobile }) {
               transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
               style={{ overflow: 'hidden', borderRadius: '12px', border: '1px solid var(--border-strong)', boxShadow: '0 12px 30px rgba(0,0,0,0.4)' }}
             >
-              <img src={kw.image} alt={kw.caption} style={styles.mobileRevealImg} />
+              <img src={kw.image} alt={kw.caption} loading="lazy" style={styles.mobileRevealImg} />
               <div style={styles.mobileRevealCaption}>{kw.caption}</div>
             </motion.div>
           )}
@@ -299,7 +299,7 @@ export default function AboutSection() {
             exit={{ opacity: 0, scale: 0.7, rotate: 4 }}
             transition={{ type: 'spring', stiffness: 350, damping: 25 }}
           >
-            <img src={activeKw.image} alt={activeKw.caption} style={styles.floatingImage} />
+            <img src={activeKw.image} alt={activeKw.caption} loading="lazy" style={styles.floatingImage} />
             <div style={styles.floatingCaption}>{activeKw.caption}</div>
           </motion.div>
         )}

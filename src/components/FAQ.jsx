@@ -13,7 +13,7 @@ const faqItems = [
   },
   {
     question: 'How long is the recovery time?',
-    answer: 'Most patients can return to normal activities within 1–2 weeks, though this varies depending on the procedure. Dr. Suhas provides personalised recovery guidance for every patient.'
+    answer: 'Most patients can return to normal activities within 1-2 weeks, though this varies depending on the procedure. Dr. Suhas provides personalised recovery guidance for every patient.'
   },
   {
     question: 'Is laparoscopic surgery safe?',
@@ -33,7 +33,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section className="section" aria-label="Frequently Asked Questions" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '4rem', alignItems: 'start' }}>
@@ -58,6 +58,8 @@ export default function FAQ() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqItems.map((item, index) => {
               const isOpen = activeIndex === index;
+              const panelId = `faq-panel-${index}`;
+              const buttonId = `faq-button-${index}`;
               return (
                 <motion.div 
                   key={index}
@@ -75,6 +77,9 @@ export default function FAQ() {
                   }}
                 >
                   <button
+                    id={buttonId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
                     onClick={() => toggleFAQ(index)}
                     style={{
                       width: '100%',
@@ -116,6 +121,9 @@ export default function FAQ() {
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={buttonId}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}

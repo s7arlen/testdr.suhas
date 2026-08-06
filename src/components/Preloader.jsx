@@ -5,12 +5,25 @@ export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time (e.g. assets loading)
-    const timer = setTimeout(() => {
+    if (document.readyState === 'complete') {
       setLoading(false);
-    }, 2000); // 2 seconds
+      return undefined;
+    }
 
-    return () => clearTimeout(timer);
+    const timer = window.setTimeout(() => {
+      setLoading(false);
+    }, 700);
+
+    const handleLoad = () => {
+      window.clearTimeout(timer);
+      setLoading(false);
+    };
+
+    window.addEventListener('load', handleLoad, { once: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('load', handleLoad);
+    };
   }, []);
 
   return (

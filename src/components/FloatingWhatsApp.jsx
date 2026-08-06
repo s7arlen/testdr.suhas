@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
+import { siteSettings } from '../config/siteSettings';
 
 export default function FloatingWhatsApp() {
   return (
     <motion.a
-      href="https://api.whatsapp.com/send/?phone=%2B919035942513&text=Hello"
+      href={`https://api.whatsapp.com/send/?phone=%2B${siteSettings.phoneUrl}&text=Hello`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
@@ -29,10 +30,10 @@ export default function FloatingWhatsApp() {
         textDecoration: 'none',
       }}
       onHoverStart={(e) => {
-        e.target.style.boxShadow = '0 6px 24px rgba(37, 211, 102, 0.6)';
+        e.currentTarget.style.boxShadow = '0 6px 24px rgba(37, 211, 102, 0.6)';
       }}
       onHoverEnd={(e) => {
-        e.target.style.boxShadow = '0 4px 14px rgba(37, 211, 102, 0.4)';
+        e.currentTarget.style.boxShadow = '0 4px 14px rgba(37, 211, 102, 0.4)';
       }}
     >
       <svg

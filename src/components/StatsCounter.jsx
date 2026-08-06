@@ -222,7 +222,7 @@ export default function StatsCounter() {
           color: #94A3B8;
         }
 
-        /* ── Mobile 2×2 grid ── */
+        /* Mobile 2x2 grid */
         @media (max-width: 1023px) {
           .stats-counter {
             padding: 40px 20px;

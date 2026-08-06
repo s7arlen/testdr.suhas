@@ -1,27 +1,82 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './index.css';
+import './App.css';
 
+/**
+ * ErrorBoundary - Global error boundary.
+ * Catches React rendering errors and prevents the entire app from crashing.
+ * Shows a polished, user-friendly fallback instead of a blank screen.
+ * NEVER exposes stack traces to end users.
+ */
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { hasError: false };
   }
-  static getDerivedStateFromError(error) {
-    return { hasError: true, error };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
+
+  componentDidCatch(error, info) {
+    // In production: send to error monitoring service (e.g., Sentry)
+    // In development: log for debugging only
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[ErrorBoundary]', error, info);
+    }
+  }
+
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '2rem', fontFamily: 'monospace', background: '#fff', color: '#c00', minHeight: '100vh' }}>
-          <h2>React Render Error — Check this to fix the bug:</h2>
-          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all', background: '#f5f5f5', padding: '1rem', borderRadius: '8px', marginTop: '1rem' }}>
-            {this.state.error?.toString()}
-            {'\n\n'}
-            {this.state.error?.stack}
-          </pre>
+        <div
+          role="alert"
+          aria-live="assertive"
+          style={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            padding: '2rem',
+            background: 'var(--bg-primary, #F7FBFF)',
+            fontFamily: 'var(--font-sans, system-ui, sans-serif)',
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: 'var(--font-display, system-ui, sans-serif)',
+              fontSize: '1.75rem',
+              marginBottom: '1rem',
+              color: 'var(--text-primary, #14324B)',
+            }}
+          >
+            Something went wrong
+          </h1>
+          <p style={{ color: 'var(--text-secondary, #58738F)', marginBottom: '2rem', maxWidth: '400px' }}>
+            We&apos;re sorry — an unexpected error occurred. Please try refreshing the page.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            style={{
+              padding: '0.75rem 1.5rem',
+              background: 'var(--primary-blue, #2D6BFF)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '9999px',
+              cursor: 'pointer',
+              fontWeight: 600,
+              fontSize: '1rem',
+              fontFamily: 'inherit',
+            }}
+          >
+            Refresh Page
+          </button>
         </div>
       );
     }
@@ -32,9 +87,12 @@ class ErrorBoundary extends React.Component {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <HashRouter>
-        <App />
-      </HashRouter>
+      {/* HelmetProvider enables dynamic SEO metadata per page */}
+      <HelmetProvider>
+        <HashRouter>
+          <App />
+        </HashRouter>
+      </HelmetProvider>
     </ErrorBoundary>
   </React.StrictMode>,
 );

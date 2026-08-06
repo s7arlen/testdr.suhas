@@ -56,8 +56,11 @@ export default function Hero() {
             initial={{ scale: 1.2, opacity: 0, filter: 'blur(20px)' }}
             animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1920&q=80" 
-            alt="Dr. Suhas"
+            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1200&q=80" 
+            alt="Dr. Suhas S Kumar - Consultant General & Laparoscopic Surgeon"
+            fetchPriority="high"
+            decoding="async"
+            loading="eager"
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '0% 0%' }}
           />
         </div>

@@ -40,7 +40,7 @@ export default function Testimonials() {
   const prev = () => setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
 
   return (
-    <section className="section" style={{ backgroundColor: 'var(--bg-tertiary)', borderRadius: '48px', margin: '0 1rem', overflow: 'hidden' }}>
+    <section className="section" aria-label="Patient Testimonials" style={{ backgroundColor: 'var(--bg-tertiary)', borderRadius: '48px', margin: '0 1rem', overflow: 'hidden' }}>
       <div className="container" style={{ position: 'relative', padding: '4rem 0' }}>
         
         <Quote size={120} color="var(--border-subtle)" style={{ position: 'absolute', top: 0, left: 0, zIndex: 0 }} />
@@ -91,10 +91,10 @@ export default function Testimonials() {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem' }}>
-            <button onClick={prev} className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
+            <button onClick={prev} aria-label="Previous testimonial" className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
               <ChevronLeft size={24} />
             </button>
-            <button onClick={next} className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
+            <button onClick={next} aria-label="Next testimonial" className="btn-secondary" style={{ width: '48px', height: '48px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid var(--border-strong)', background: 'transparent', color: 'var(--text-primary)' }}>
               <ChevronRight size={24} />
             </button>
           </div>
