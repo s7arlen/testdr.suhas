@@ -165,9 +165,13 @@ export function DesktopFilmStrip() {
               fontSize: '0.7rem',
               fontWeight: 700,
               letterSpacing: '0.25em',
-              color: 'rgba(255,255,255,0.2)',
+              color: '#ffffff',
               fontFamily: 'monospace',
               zIndex: 10,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              padding: '0.5rem 0.65rem',
+              borderRadius: '4px',
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)',
             }}>
               FRAME {spec.number} / {specializations.length.toString().padStart(2, '0')}
             </div>

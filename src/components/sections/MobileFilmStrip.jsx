@@ -92,8 +92,12 @@ export function MobileFilmStrip() {
                   fontSize: '0.6rem',
                   fontWeight: 700,
                   letterSpacing: '0.2em',
-                  color: 'var(--text-muted)',
+                  color: '#ffffff',
                   fontFamily: 'monospace',
+                  backgroundColor: 'rgba(0, 0, 0, 0.55)',
+                  padding: '0.4rem 0.5rem',
+                  borderRadius: '4px',
+                  textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)',
                 }}>
                   FRAME {spec.number} / 09
                 </div>
