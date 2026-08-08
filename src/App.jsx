@@ -14,6 +14,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const BlogPage = lazy(() => import('./components/BlogPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           {/* Catch-all 404 route */}
           <Route path="*" element={<NotFound />} />

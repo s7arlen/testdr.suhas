@@ -8,9 +8,7 @@ import { motion } from 'framer-motion';
  * Linked to from App.jsx as the catch-all route.
  */
 export const NotFound = () => (
-  <motion.main
-    id="main-content"
-    role="main"
+  <motion.section
     aria-labelledby="not-found-heading"
     initial={{ opacity: 0, y: 30 }}
     animate={{ opacity: 1, y: 0 }}
@@ -52,5 +50,5 @@ export const NotFound = () => (
     <Link to="/" className="btn btn-primary">
       Back to Home
     </Link>
-  </motion.main>
+  </motion.section>
 );

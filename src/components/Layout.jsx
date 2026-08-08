@@ -137,7 +137,7 @@ export default function Layout({ children }) {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }, [location.pathname]);
 
   // Lock body scroll when mobile menu is open

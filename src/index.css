@@ -197,7 +197,7 @@ img {
   transition: top var(--duration-fast) ease;
 }
 .skip-nav:focus {
-  top: 1rem;
+  top: 1rem !important;
   outline: 3px solid #fff;
   outline-offset: 2px;
 }
