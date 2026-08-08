@@ -472,8 +472,14 @@
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
     gap: 1rem;
+  }
+
+  .footer-bottom > div {
+    justify-content: center !important;
+    width: 100%;
   }
 
   .footer-links {
@@ -972,6 +978,5 @@
 [data-theme='dark'] .lux-disclaimer {
   color: #4B5563;
 }
-
 
 
