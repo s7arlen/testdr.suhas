@@ -148,6 +148,12 @@ export const publications = [
 
 export const galleryImages = [
   {
+    src: `${import.meta.env.BASE_URL}images/hero-doctor.png`,
+    title: 'Dr. Suhas S Kumar',
+    label: 'Consultant General & Laparoscopic Surgeon',
+    span: 'tall',
+  },
+  {
     src: 'https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=800&q=80',
     title: 'Advanced Operating Theatre',
     label: 'State-of-the-Art Surgical Suite',

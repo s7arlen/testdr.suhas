@@ -24,6 +24,8 @@ const fadeUp = {
   }
 };
 
+const heroImage = `${import.meta.env.BASE_URL}images/hero-doctor.png`;
+
 export default function Hero() {
   const [isDark, setIsDark] = useState(
     typeof document !== 'undefined'
@@ -51,12 +53,12 @@ export default function Hero() {
         {/* Animated Precision Pattern (Light Mode) */}
         <div className="hero-animated-pattern" />
 
-        <div className="hero-img-wrapper" style={{ width: '100%', height: '100%' }}>
+        <div className="hero-img-wrapper" style={{ width: '100%', height: '100%', '--hero-image': `url(${heroImage})` }}>
           <motion.img 
             initial={{ scale: 1.2, opacity: 0, filter: 'blur(20px)' }}
             animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
             transition={{ duration: 1.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1200&q=80" 
+            src={heroImage}
             alt="Dr. Suhas S Kumar - Consultant General & Laparoscopic Surgeon"
             fetchPriority="high"
             decoding="async"

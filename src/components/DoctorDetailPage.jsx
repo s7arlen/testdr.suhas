@@ -11,32 +11,41 @@ export default function DoctorDetailPage() {
   return (
     <>
       {/* Hero */}
-      <section style={{ position: 'relative', minHeight: '70vh', display: 'flex', alignItems: 'flex-end', paddingBottom: '5rem', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+      <section className="doctor-hero">
+        <div className="doctor-hero-content">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <div className="text-eyebrow" style={{ marginBottom: '1rem' }}>Consultant General & Laparoscopic Surgeon</div>
+            <h1 className="h-display" style={{ marginBottom: '1.25rem' }}>
+              Dr. Suhas<br /><span className="text-gradient-gold">S Kumar</span>
+            </h1>
+            <p className="text-lead" style={{ maxWidth: '540px', marginBottom: '1.75rem' }}>
+              MS (Gen Surg) - FIAGES - FALS - Dip Lap
+            </p>
+            <div className="doctor-hero-accent" aria-hidden="true" />
+            <div className="doctor-hero-proof" aria-label="Professional highlights">
+              <div>
+                <strong>11+</strong>
+                <span>Years of practice</span>
+              </div>
+              <div>
+                <strong>1000+</strong>
+                <span>Surgeries performed</span>
+              </div>
+              <div>
+                <strong>FALS</strong>
+                <span>Advanced laparoscopy</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="doctor-hero-portrait">
           <img
-            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1200&q=80"
+            src={`${import.meta.env.BASE_URL}images/hero-doctor.png`}
             alt="Dr. Suhas S Kumar"
             fetchPriority="high"
             decoding="async"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
           />
-          {/* Overlay that fades to bg-secondary at the bottom to match the next section seamlessly */}
-          <div style={{ 
-            position: 'absolute', 
-            inset: 0, 
-            background: 'linear-gradient(to bottom, rgba(247, 251, 255, 0.4) 0%, rgba(247, 251, 255, 0.8) 60%, var(--bg-secondary) 100%)' 
-          }} />
-        </div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="text-eyebrow" style={{ marginBottom: '1rem' }}>Consultant General & Laparoscopic Surgeon</div>
-            <h1 className="h-display" style={{ marginBottom: '1rem' }}>
-              Dr. Suhas<br /><span className="text-gradient-gold">S Kumar</span>
-            </h1>
-            <p className="text-lead" style={{ maxWidth: '550px', marginBottom: 0 }}>
-              MS (Gen Surg) - FIAGES - FALS - Dip Lap
-            </p>
-          </motion.div>
         </div>
       </section>
 

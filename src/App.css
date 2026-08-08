@@ -5,6 +5,118 @@
   min-height: 100vh;
 }
 
+/* Doctor profile hero: an editorial 60/40 split keeps the portrait clear. */
+.doctor-hero {
+  min-height: clamp(480px, 56vh, 620px);
+  display: grid;
+  grid-template-columns: 60% 40%;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.doctor-hero-content {
+  display: flex;
+  align-items: center;
+  padding: 7rem clamp(2rem, 9vw, 11rem) 5rem;
+  position: relative;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 10% 24%, rgba(90, 174, 255, 0.16), transparent 36%),
+    linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.doctor-hero-content::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: linear-gradient(135deg, rgba(45, 107, 255, 0.08) 25%, transparent 25%, transparent 75%, rgba(45, 107, 255, 0.08) 75%);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to right, black, transparent 80%);
+}
+
+.doctor-hero-content > div { position: relative; z-index: 1; }
+
+.doctor-hero-accent {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold));
+  border-radius: 99px;
+}
+
+.doctor-hero-proof {
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+
+.doctor-hero-proof > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-right: 1.25rem;
+  border-right: 1px solid var(--border-strong);
+}
+
+.doctor-hero-proof > div:last-child { border-right: 0; padding-right: 0; }
+
+.doctor-hero-proof strong {
+  color: var(--primary-blue);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.doctor-hero-proof span {
+  color: var(--text-secondary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.doctor-hero-portrait {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eaf3ff, #f7fbff);
+}
+
+.doctor-hero-portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--bg-secondary) 0%, transparent 22%);
+}
+
+.doctor-hero-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+@media (max-width: 767px) {
+  .doctor-hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-hero-content { padding: 4rem 1.5rem 3rem; }
+  .doctor-hero-portrait { height: 520px; }
+  .doctor-hero-portrait::before { background: linear-gradient(to bottom, var(--bg-secondary) 0%, transparent 22%); }
+  .doctor-hero-proof { gap: 0.8rem; }
+  .doctor-hero-proof > div { padding-right: 0.8rem; }
+  .doctor-hero-proof strong { font-size: 1.05rem; }
+  .doctor-hero-proof span { font-size: 0.58rem; }
+}
+
 .main-content {
   flex: 1;
 }
@@ -198,10 +310,23 @@
 /* Desktop Only tweaks */
 @media (min-width: 768px) {
   .hero-img-wrapper {
-    transform: scaleX(-1);
+    /* Keep the portrait orientation consistent with the supplied image. */
+    transform: none;
     position: absolute !important;
-    right: -15%;
-    width: 70% !important;
+    right: 0;
+    width: 50% !important;
+    background: var(--hero-image) center / cover no-repeat;
+  }
+
+  .hero-img-wrapper img {
+    /* A single full-bleed image prevents seams or duplicated background details. */
+    object-fit: cover !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    left: 0;
+    bottom: -3%;
   }
 }
 
@@ -978,5 +1103,3 @@
 [data-theme='dark'] .lux-disclaimer {
   color: #4B5563;
 }
-
-
