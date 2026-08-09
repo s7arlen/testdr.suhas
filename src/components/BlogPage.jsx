@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import SEO from './SEO';
+import { PageWrapper } from './common';
+import { siteSettings } from '../config/siteSettings';
+import { organizationSchema, breadcrumbSchema } from '../data/content';
 
 const blogPosts = [
   {
@@ -59,7 +63,14 @@ const cardVariants = {
 
 export default function BlogPage() {
   return (
-    <section className="section" style={{ paddingTop: '160px', backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
+    <PageWrapper>
+      <SEO
+        title="Medical Articles & Surgical Guides"
+        description="Articles and patient guides on laparoscopic surgery, hernia care, diabetic foot, and recovery by Dr. Suhas S Kumar."
+        pathname="/blog"
+        schema={[organizationSchema, breadcrumbSchema([{ name: 'Home', item: `${siteSettings.siteUrl}/` }, { name: 'Blog', item: `${siteSettings.siteUrl}/blog` }])]}
+      />
+      <section className="section" style={{ paddingTop: '160px', backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
       <div className="container">
         
         {/* Page Header */}
@@ -154,5 +165,6 @@ export default function BlogPage() {
 
       </div>
     </section>
+    </PageWrapper>
   );
 }

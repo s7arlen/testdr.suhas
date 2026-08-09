@@ -46,15 +46,18 @@ export default function Preloader() {
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            animate={{ scale: 1, opacity: 1, rotate: 360 }}
+            transition={{
+              rotate: { duration: 1.2, repeat: Infinity, ease: 'linear' },
+              scale: { duration: 0.5 },
+              opacity: { duration: 0.5 }
+            }}
             style={{
               width: '80px',
               height: '80px',
               borderRadius: '50%',
               border: '3px solid var(--border-subtle)',
               borderTopColor: 'var(--accent-gold)',
-              animation: 'spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite'
             }}
           />
           <motion.h2 
@@ -75,14 +78,6 @@ export default function Preloader() {
           >
             Surgical Excellence
           </motion.p>
-          <style>
-            {`
-              @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-            `}
-          </style>
         </motion.div>
       )}
     </AnimatePresence>

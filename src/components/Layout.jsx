@@ -126,6 +126,8 @@ SocialButton.displayName = 'SocialButton';
 
 /* ─── Main Layout ──────────────────────────────────────────────── */
 
+import { SkipNav } from './common';
+
 export default function Layout({ children }) {
   const scrollY = useScrollPosition();
   const { theme, toggleTheme } = useTheme();
@@ -151,6 +153,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="app-container">
+      <SkipNav />
       {/* ─── Header / Navbar ─────────────────────────────────────── */}
       <header
         className={`navbar${isScrolled ? ' scrolled' : ''}`}
