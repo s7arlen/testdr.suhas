@@ -10,15 +10,15 @@ export function PhilosophyCard({
   isDark,
   onSelect
 }) {
-  const accentColor = card.isNavy ? '#5AAEFF' : '#2D6BFF';
-  const titleColor = card.isNavy ? '#FFFFFF' : (isDark ? '#EEF3FF' : '#0E2348');
-  const descColor = card.isNavy ? 'rgba(210,228,249,0.88)' : (isDark ? 'rgba(175,195,225,0.82)' : '#58738F');
-  const bgColor = card.isNavy ? (isDark ? '#091524' : '#0E2348') : (isDark ? '#0F1F35' : '#FFFFFF');
+  const accentColor = card.isNavy ? '#5AAEFF' : (isDark ? '#4F94FF' : '#2D6BFF');
+  const titleColor = card.isNavy ? '#FFFFFF' : (isDark ? '#E8F1FF' : '#0E2348');
+  const descColor = card.isNavy ? 'rgba(210,228,249,0.88)' : (isDark ? 'rgba(180,205,235,0.88)' : '#58738F');
+  const bgColor = card.isNavy ? (isDark ? '#081320' : '#0E2348') : (isDark ? '#14243B' : '#FFFFFF');
   const borderColor = card.isNavy
     ? (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.05)')
-    : (isDark ? 'rgba(90,174,255,0.12)' : 'rgba(45,107,255,0.07)');
-  const tagBg = card.isNavy ? 'rgba(90,174,255,0.12)' : 'rgba(45,107,255,0.07)';
-  const tagBorder = card.isNavy ? 'rgba(90,174,255,0.22)' : 'rgba(45,107,255,0.15)';
+    : (isDark ? 'rgba(90,174,255,0.18)' : 'rgba(45,107,255,0.07)');
+  const tagBg = card.isNavy ? 'rgba(90,174,255,0.12)' : (isDark ? 'rgba(79,148,255,0.15)' : 'rgba(45,107,255,0.07)');
+  const tagBorder = card.isNavy ? 'rgba(90,174,255,0.22)' : (isDark ? 'rgba(79,148,255,0.25)' : 'rgba(45,107,255,0.15)');
 
   const defaultShadow = isDark 
     ? '0 16px 32px rgba(0,0,0,0.35)' 
@@ -28,7 +28,7 @@ export function PhilosophyCard({
     : '0 20px 48px rgba(30,80,180,0.11)';
   const innerGlare = card.isNavy 
     ? 'inset 0 1px 1px rgba(255,255,255,0.15)' 
-    : 'inset 0 1px 1px rgba(255,255,255,0.5)';
+    : (isDark ? 'inset 0 1px 1px rgba(255,255,255,0.08)' : 'inset 0 1px 1px rgba(255,255,255,0.5)');
 
   const desktopFlex = isActive ? 3.5 : 1;
   const mobileHeight = isActive ? 'auto' : '76px';
@@ -36,7 +36,17 @@ export function PhilosophyCard({
   return (
     <motion.div
       layout
+      role="button"
+      tabIndex={0}
+      aria-expanded={isActive}
+      aria-label={`${card.title} - ${card.tag}`}
       onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
       onMouseEnter={() => !isMobile && onSelect()}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -60,6 +70,7 @@ export function PhilosophyCard({
         position: 'relative',
         display: 'flex',
         flexDirection: isMobile ? 'column' : 'row',
+        outline: 'none',
       }}
     >
       {/* Background Image Layer */}
@@ -72,8 +83,8 @@ export function PhilosophyCard({
           backgroundPosition: 'center',
           opacity: isActive ? 0.50 : 0.30,
           transition: 'opacity 0.5s ease',
-          mixBlendMode: card.isNavy ? 'luminosity' : 'multiply',
-          filter: 'contrast(105%) brightness(95%)',
+          mixBlendMode: card.isNavy ? 'luminosity' : (isDark ? 'soft-light' : 'multiply'),
+          filter: card.isNavy ? 'contrast(105%) brightness(95%)' : (isDark ? 'contrast(110%) brightness(110%)' : 'contrast(105%) brightness(95%)'),
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -88,7 +99,7 @@ export function PhilosophyCard({
                 ? 'linear-gradient(135deg, rgba(9,21,36,0.90) 0%, rgba(14,35,72,0.82) 100%)' 
                 : 'linear-gradient(135deg, rgba(14,35,72,0.85) 0%, rgba(7,20,42,0.78) 100%)')
             : (isDark 
-                ? 'linear-gradient(135deg, rgba(15,31,53,0.92) 0%, rgba(20,38,65,0.88) 100%)' 
+                ? 'linear-gradient(135deg, rgba(20,36,59,0.85) 0%, rgba(14,28,48,0.80) 100%)' 
                 : 'linear-gradient(135deg, rgba(255,255,255,0.90) 0%, rgba(241,247,253,0.84) 100%)'),
           pointerEvents: 'none',
           zIndex: 0,

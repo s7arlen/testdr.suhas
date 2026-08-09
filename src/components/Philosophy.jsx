@@ -2,28 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { philosophyCards as CARDS } from '../data/philosophyData';
 import { PhilosophyCard } from './sections/PhilosophyCard';
+import { useTheme } from '../hooks';
 
 export default function Philosophy() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 1024);
-    onResize();
-    window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
+    const mediaQuery = window.matchMedia('(max-width: 1023px)');
+    const onChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mediaQuery.matches);
 
-  useEffect(() => {
-    const sync = () => setIsDark(document.documentElement.dataset.theme === 'dark');
-    sync();
-    const obs = new MutationObserver(sync);
-    obs.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-    return () => obs.disconnect();
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', onChange);
+      return () => mediaQuery.removeEventListener('change', onChange);
+    } else {
+      mediaQuery.addListener(onChange);
+      return () => mediaQuery.removeListener(onChange);
+    }
   }, []);
 
   const sectionBg = isDark

@@ -25,7 +25,7 @@ export default function SEO({
   robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
 }) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Consultant Surgeon in Bengaluru`;
-  const canonicalUrl = `${siteSettings.siteUrl}${pathname !== '/' ? `/#${pathname}` : ''}`;
+  const canonicalUrl = `${siteSettings.siteUrl}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
 
   return (
     <Helmet>

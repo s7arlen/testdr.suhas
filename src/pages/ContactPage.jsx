@@ -59,7 +59,7 @@ export default function ContactPage() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} style={{ height: '500px', borderRadius: '32px', overflow: 'hidden' }}>
-            <iframe title="Clinic map" src={siteSettings.locations[0].mapSrc} width="100%" height="100%" style={{ border: 0 }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            <iframe title="Clinic map" src={siteSettings.locations[0].mapSrc} width="100%" height="100%" style={{ border: 0 }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-popups" />
           </motion.div>
 
         </div>

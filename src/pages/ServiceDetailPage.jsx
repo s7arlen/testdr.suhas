@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useParams } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { PageWrapper } from '../components/common';
+import { PageWrapper, NotFound } from '../components/common';
 import { serviceCatalog, organizationSchema, buildServiceSchema, breadcrumbSchema } from '../data/content';
 import { siteSettings } from '../config/siteSettings';
 
@@ -19,9 +19,7 @@ export default function ServiceDetailPage() {
           pathname={`/services/${slug || 'unknown'}`}
           robots="noindex,nofollow"
         />
-        <section className="section" style={{ paddingTop: '160px', textAlign: 'center' }}>
-          <h1 className="h-2">Service Not Found</h1>
-        </section>
+        <NotFound />
       </PageWrapper>
     );
   }

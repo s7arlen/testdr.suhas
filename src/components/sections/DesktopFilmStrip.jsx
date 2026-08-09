@@ -283,13 +283,29 @@ export function DesktopFilmStrip() {
                     alignItems: 'center',
                     gap: '0.75rem',
                     color: spec.accent,
-                    fontWeight: 600,
-                    fontSize: '0.95rem',
-                    letterSpacing: '0.05em',
+                    fontWeight: 700,
+                    fontSize: '1rem',
+                    letterSpacing: '0.08em',
                     textDecoration: 'none',
-                    borderBottom: `1px solid ${spec.accent}44`,
-                    paddingBottom: '4px',
-                    transition: 'border-color 0.3s ease',
+                    textTransform: 'uppercase',
+                    padding: '0.75rem 1.8rem',
+                    border: `2px solid ${spec.accent}`,
+                    borderRadius: '50px',
+                    background: `${spec.accent}18`,
+                    boxShadow: `0 0 20px ${spec.accent}30, 0 4px 15px rgba(0,0,0,0.1)`,
+                    transition: 'all 0.3s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = spec.accent;
+                    e.currentTarget.style.color = '#1a1a1a';
+                    e.currentTarget.style.boxShadow = `0 0 30px ${spec.accent}50, 0 6px 20px rgba(0,0,0,0.15)`;
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = `${spec.accent}18`;
+                    e.currentTarget.style.color = spec.accent;
+                    e.currentTarget.style.boxShadow = `0 0 20px ${spec.accent}30, 0 4px 15px rgba(0,0,0,0.1)`;
+                    e.currentTarget.style.transform = 'translateY(0)';
                   }}
                 >
                   Learn More <ArrowRight size={18} />
