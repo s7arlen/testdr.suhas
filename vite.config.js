@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // GitHub Pages hosts this repository below its project path. Keep the
+  // development server at the root while emitting correctly prefixed assets.
+  base: command === 'build' ? '/testdr.suhas/' : '/',
   plugins: [react()],
   
   resolve: {
@@ -46,4 +49,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react', 'react-helmet-async'],
   },
-});
+}));
