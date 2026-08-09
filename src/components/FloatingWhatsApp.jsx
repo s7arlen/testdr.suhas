@@ -2,9 +2,11 @@ import { motion } from 'framer-motion';
 import { siteSettings } from '../config/siteSettings';
 
 export default function FloatingWhatsApp() {
+  const message = 'Hello, I would like to book a consultation.';
+
   return (
     <motion.a
-      href={`https://api.whatsapp.com/send/?phone=%2B${siteSettings.phoneUrl}&text=Hello`}
+      href={`https://wa.me/${siteSettings.whatsappNumber}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"

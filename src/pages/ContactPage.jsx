@@ -6,7 +6,8 @@ import { organizationSchema, breadcrumbSchema } from '../data/content';
 import { siteSettings } from '../config/siteSettings';
 
 export default function ContactPage() {
-  const whatsappLink = `https://api.whatsapp.com/send/?phone=%2B${siteSettings.phoneUrl}&text=Hello`;
+  const whatsappMessage = 'Hello, I would like to book a consultation.';
+  const whatsappLink = `https://wa.me/${siteSettings.whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   
   return (
     <PageWrapper>

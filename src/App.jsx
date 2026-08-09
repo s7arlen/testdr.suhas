@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import { LoadingFallback } from './components/common';
 import { NotFound } from './components/common';
+import SEO from './components/SEO';
 
 /**
  * Route-level code splitting with React.lazy.
@@ -17,6 +18,20 @@ const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const BlogPage = lazy(() => import('./components/BlogPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
+function NotFoundPage() {
+  return (
+    <>
+      <SEO
+        title="Page Not Found"
+        description="The requested page could not be found."
+        pathname="/404"
+        robots="noindex,nofollow"
+      />
+      <NotFound />
+    </>
+  );
+}
+
 export default function App() {
   return (
     <Layout>
@@ -30,7 +45,7 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
           {/* Catch-all 404 route */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Layout>
