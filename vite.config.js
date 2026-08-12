@@ -3,9 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig(({ command }) => ({
-  // GitHub Pages hosts this repository below its project path. Keep the
-  // development server at the root while emitting correctly prefixed assets.
-  base: command === 'build' ? '/testdr.suhas/' : '/',
+  // Vercel deploys at the domain root — always use '/' as the base.
+  base: '/',
   plugins: [react()],
   
   resolve: {
