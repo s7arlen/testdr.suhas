@@ -305,6 +305,10 @@
   .hero-img-wrapper img {
     object-position: center !important;
   }
+  [data-theme='dark'] .hero-section .text-eyebrow {
+    color: #F2E3C6; /* Whitish gold */
+    text-shadow: 0 0 10px rgba(242, 227, 198, 0.25);
+  }
 }
 
 /* Desktop Only tweaks */
