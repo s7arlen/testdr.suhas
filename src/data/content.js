@@ -110,7 +110,7 @@ export const milestones = [
   { year: '2018', title: 'St. Johns Medical College', desc: 'Appointed as Assistant Professor, Department of General Surgery' },
   { year: '2019', title: 'Advanced Laparoscopy', desc: 'Completed FALS and Dip Lap certifications in advanced laparoscopic techniques' },
   { year: '2021', title: 'FIAGES Fellowship', desc: 'Recognised by the Indian Association of Gastrointestinal Endo-Surgeons' },
-  { year: '2023', title: 'Consultant Surgeon', desc: 'Established private practice at Deepak Hospital & Dermapulse Clinic, Bengaluru' },
+  { year: '2023', title: 'Consultant Surgeon', desc: 'Established private practice at Deepak Hospital, Bengaluru' },
 ];
 
 export const publications = [
