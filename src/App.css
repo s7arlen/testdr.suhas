@@ -7,7 +7,7 @@
 
 /* Doctor profile hero: an editorial 60/40 split keeps the portrait clear. */
 .doctor-hero {
-  min-height: auto;
+  min-height: clamp(180px, 22vh, 260px);
   display: grid;
   grid-template-columns: 60% 40%;
   overflow: hidden;
@@ -17,7 +17,7 @@
 .doctor-hero-content {
   display: flex;
   align-items: center;
-  padding: 0.5rem clamp(1.5rem, 6vw, 6rem) 0.5rem;
+  padding: 1rem clamp(2rem, 8vw, 9rem) 0.75rem;
   position: relative;
   z-index: 1;
   background: var(--bg-primary);
@@ -111,8 +111,8 @@
     grid-template-columns: 1fr;
   }
 
-  .doctor-hero-content { padding: 0.5rem 1rem 0.35rem; }
-  .doctor-hero-portrait { height: 160px; }
+  .doctor-hero-content { padding: 0.85rem 1.25rem 0.65rem; }
+  .doctor-hero-portrait { height: 190px; }
   .doctor-hero-portrait::before { background: linear-gradient(to bottom, var(--bg-secondary) 0%, transparent 22%); }
   .doctor-hero-proof { gap: 0.8rem; }
   .doctor-hero-proof > div { padding-right: 0.8rem; }
