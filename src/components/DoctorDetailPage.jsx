@@ -13,15 +13,15 @@ export default function DoctorDetailPage() {
       <section className="doctor-hero">
         <div className="doctor-hero-content">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="text-eyebrow" style={{ marginBottom: '0.25rem' }}>Consultant General & Laparoscopic Surgeon</div>
-            <h1 className="h-display" style={{ marginBottom: '0.35rem' }}>
+            <div className="text-eyebrow" style={{ marginBottom: '0.5rem' }}>Consultant General & Laparoscopic Surgeon</div>
+            <h1 className="h-display" style={{ marginBottom: '0.75rem' }}>
               Dr. Suhas<br /><span className="text-gradient-gold">S Kumar</span>
             </h1>
-            <p className="text-lead" style={{ maxWidth: '540px', marginBottom: '0.5rem' }}>
+            <p className="text-lead" style={{ maxWidth: '540px', marginBottom: '1rem' }}>
               MS (Gen Surg) - FIAGES - FALS - Dip Lap
             </p>
             <div className="doctor-hero-accent" aria-hidden="true" />
-            <div className="doctor-hero-proof" style={{ marginTop: '0.75rem' }} aria-label="Professional highlights">
+            <div className="doctor-hero-proof" aria-label="Professional highlights">
               <div>
                 <strong>11+</strong>
                 <span>Years of practice</span>
