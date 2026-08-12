@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase } from 'lucide-react';
+import { GraduationCap, Briefcase, Calendar, Users, Award } from 'lucide-react';
 import LuxuryCredentials from './LuxuryCredentials';
 import { DoctorLocations } from './sections/DoctorLocations';
 import { ParallaxCTA } from './sections/ParallaxCTA';
@@ -11,28 +11,76 @@ export default function DoctorDetailPage() {
     <>
       {/* Hero */}
       <section className="doctor-hero">
+        {/* Heartbeat & Stethoscope Background Watermark */}
+        <div className="doctor-hero-pulse-bg" aria-hidden="true">
+          <svg viewBox="0 0 600 240" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            {/* ECG Pulse Line */}
+            <path 
+              d="M10 120 H140 L155 85 L170 155 L188 50 L205 170 L220 105 L235 120 H310" 
+              stroke="var(--primary-blue)" 
+              strokeWidth="3.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              opacity="0.3"
+            />
+            {/* Heart Outline */}
+            <path 
+              d="M420 120 C420 80 380 55 350 85 C320 55 280 80 280 120 C280 160 350 195 350 195 C350 195 420 160 420 120 Z" 
+              stroke="var(--primary-blue)" 
+              strokeWidth="3.5" 
+              fill="none" 
+              opacity="0.22"
+            />
+          </svg>
+        </div>
+
         <div className="doctor-hero-content">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <div className="text-eyebrow" style={{ marginBottom: '0.5rem' }}>Consultant General & Laparoscopic Surgeon</div>
-            <h1 className="h-display" style={{ marginBottom: '0.75rem' }}>
-              Dr. Suhas<br /><span className="text-gradient-gold">S Kumar</span>
+            <div className="text-eyebrow doctor-hero-eyebrow" style={{ marginBottom: '0.65rem' }}>
+              Consultant General & Laparoscopic Surgeon
+            </div>
+
+            <h1 className="h-display doctor-hero-name" style={{ marginBottom: '0.75rem', lineHeight: 1.1 }}>
+              <span className="doctor-name-first">Dr. Suhas</span>
+              <br />
+              <span className="doctor-name-last">S Kumar</span>
             </h1>
-            <p className="text-lead" style={{ maxWidth: '540px', marginBottom: '1rem' }}>
-              MS (Gen Surg) - FIAGES - FALS - Dip Lap
+
+            <p className="text-lead doctor-hero-degrees" style={{ maxWidth: '540px', marginBottom: '1.25rem', fontWeight: 500 }}>
+              MS (Gen Surg) &bull; FIAGES &bull; FALS &bull; Dip Lap
             </p>
-            <div className="doctor-hero-accent" aria-hidden="true" />
+
+            <div className="doctor-hero-accent" aria-hidden="true" style={{ marginBottom: '1.75rem' }} />
+
             <div className="doctor-hero-proof" aria-label="Professional highlights">
-              <div>
-                <strong>11+</strong>
-                <span>Years of practice</span>
+              <div className="proof-item">
+                <div className="proof-icon-wrapper">
+                  <Calendar size={20} className="proof-icon" />
+                </div>
+                <div className="proof-text">
+                  <strong>11+</strong>
+                  <span>Years of Practice</span>
+                </div>
               </div>
-              <div>
-                <strong>1000+</strong>
-                <span>Surgeries performed</span>
+
+              <div className="proof-item">
+                <div className="proof-icon-wrapper">
+                  <Users size={20} className="proof-icon" />
+                </div>
+                <div className="proof-text">
+                  <strong>1000+</strong>
+                  <span>Surgeries Performed</span>
+                </div>
               </div>
-              <div>
-                <strong>FALS</strong>
-                <span>Advanced laparoscopy</span>
+
+              <div className="proof-item">
+                <div className="proof-icon-wrapper">
+                  <Award size={20} className="proof-icon" />
+                </div>
+                <div className="proof-text">
+                  <strong>FALS</strong>
+                  <span>Advanced Laparoscopy</span>
+                </div>
               </div>
             </div>
           </motion.div>
