@@ -69,7 +69,7 @@ export default function DoctorDetailPage() {
             <Briefcase size={28} style={{ color: 'var(--accent-gold)', marginBottom: '1.5rem' }} />
             <h3 className="h-3" style={{ marginBottom: '1.5rem' }}>Clinical Practice</h3>
             <p className="text-body" style={{ marginBottom: '1.5rem' }}>
-              With over 11 years of clinical experience and 1000+ surgeries performed, Dr. Suhas now practices at Deepak Hospital and Dermapulse Clinic in Bengaluru, offering a full range of general and advanced laparoscopic surgical services.
+              With over 11 years of clinical experience and 1000+ surgeries performed, Dr. Suhas now practices at Deepak Hospital, offering a full range of general and advanced laparoscopic surgical services.
             </p>
             <p className="text-body">
               His specialisations span from laparoscopic cholecystectomy and hernia repair to thyroid surgery, breast oncology surgery, and comprehensive diabetic foot care - always with a patient-first approach.
