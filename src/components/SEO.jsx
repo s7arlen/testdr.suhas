@@ -35,6 +35,11 @@ export default function SEO({
       <meta name="robots" content={robots} />
       <link rel="canonical" href={canonicalUrl} />
 
+      {/* Favicon */}
+      <link rel="icon" type="image/png" href="/favicon.png" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
       {/* Open Graph */}
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
