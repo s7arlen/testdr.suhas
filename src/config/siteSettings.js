@@ -1,9 +1,9 @@
 export const siteSettings = {
   name: 'Dr. Suhas S Kumar',
   role: 'Consultant General & Laparoscopic Surgeon',
-  phone: '+91 90359 42513',
-  phoneUrl: '9035942513',
-  whatsappNumber: '919035942513',
+  phone: '+91 95387 65487',
+  phoneUrl: '9538765487',
+  whatsappNumber: '919538765487',
   email: 'suhassk2@gmail.com',
   siteUrl: import.meta.env.VITE_SITE_URL || 'https://drsuhasskumar.com',
   address: {
