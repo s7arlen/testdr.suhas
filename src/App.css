@@ -20,9 +20,7 @@
   padding: 3rem clamp(2rem, 8vw, 9rem) 2.5rem;
   position: relative;
   z-index: 1;
-  background:
-    radial-gradient(circle at 10% 24%, rgba(90, 174, 255, 0.16), transparent 36%),
-    linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: var(--bg-primary);
 }
 
 .doctor-hero-content::after {
@@ -33,7 +31,7 @@
   opacity: 0.7;
   background-image: linear-gradient(135deg, rgba(45, 107, 255, 0.18) 25%, transparent 25%, transparent 75%, rgba(45, 107, 255, 0.18) 75%);
   background-size: 48px 48px;
-  mask-image: linear-gradient(to right, black 20%, transparent 90%);
+  mask-image: linear-gradient(to right, black 40%, transparent 100%);
 }
 
 [data-theme='dark'] .doctor-hero-content::after {
@@ -87,7 +85,7 @@
 .doctor-hero-portrait {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #eaf3ff, #f7fbff);
+  background: var(--bg-primary);
 }
 
 .doctor-hero-portrait::before {
@@ -96,7 +94,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(90deg, var(--bg-secondary) 0%, transparent 22%);
+  background: linear-gradient(90deg, var(--bg-primary) 0%, transparent 15%);
 }
 
 .doctor-hero-portrait img {
