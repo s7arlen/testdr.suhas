@@ -112,17 +112,6 @@ export default function LuxuryCredentials() {
             );
           })}
         </div>
-
-        {/* Single disclaimer instead of repeating on every card */}
-        <motion.p
-          className="lux-disclaimer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          All certifications are recognized medical qualifications by their respective international boards.
-        </motion.p>
       </div>
     </section>
   );
