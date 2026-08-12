@@ -45,7 +45,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="hero-section" style={{ position: 'relative', height: '100vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+    <section className="hero-section" style={{ position: 'relative', minHeight: '440px', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: 'var(--bg-primary)', padding: '2rem 0' }}>
       
       {/* Background Image & Overlay */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
@@ -94,7 +94,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '80px' }}>
+      <div className="container" style={{ position: 'relative', zIndex: 10, paddingTop: '40px' }}>
         <motion.div 
           style={{ maxWidth: '700px' }}
           variants={staggerContainer}
@@ -103,14 +103,14 @@ export default function Hero() {
         >
           
           <motion.div variants={fadeUp}>
-            <div className="text-eyebrow" style={{ marginBottom: '1.5rem' }}>
+            <div className="text-eyebrow" style={{ marginBottom: '0.75rem' }}>
               Dr. Suhas S Kumar &mdash; Consultant Surgeon
             </div>
           </motion.div>
           
           <motion.h1 
             className="h-display" 
-            style={{ marginBottom: '1.5rem', color: 'var(--text-primary)' }}
+            style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}
             variants={fadeUp}
           >
             Surgical precision.<br />
@@ -119,7 +119,7 @@ export default function Hero() {
 
           <motion.p 
             className="text-lead"
-            style={{ marginBottom: '3rem', maxWidth: '540px', color: 'var(--text-secondary)' }}
+            style={{ marginBottom: '1.5rem', maxWidth: '540px', color: 'var(--text-secondary)' }}
             variants={fadeUp}
           >
             A premium surgical experience shaped by advanced laparoscopy, calm confidence, and a deeply personal approach to your care and recovery.
@@ -127,7 +127,7 @@ export default function Hero() {
 
           <motion.div 
             className="hero-cta-row"
-            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '4rem' }}
+            style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}
             variants={fadeUp}
           >
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
