@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Briefcase } from 'lucide-react';
 import LuxuryCredentials from './LuxuryCredentials';
-import { DoctorPublications } from './sections/DoctorPublications';
 import { DoctorLocations } from './sections/DoctorLocations';
 import { ParallaxCTA } from './sections/ParallaxCTA';
 import { milestones } from '../data/content';
@@ -122,9 +121,6 @@ export default function DoctorDetailPage() {
           </div>
         </div>
       </section>
-
-      {/* Publications */}
-      <DoctorPublications />
 
       {/* Locations */}
       <DoctorLocations />
