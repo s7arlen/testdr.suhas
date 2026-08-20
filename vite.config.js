@@ -1,11 +1,28 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'fs';
 
 export default defineConfig(({ command }) => ({
-  // Vercel deploys at the domain root — always use '/' as the base.
-  base: '/',
-  plugins: [react()],
+  // GitHub Pages deployment base path
+  base: '/testdr.suhas/',
+  plugins: [
+    react(),
+    {
+      name: 'copy-404',
+      closeBundle() {
+        try {
+          const indexHtml = path.resolve(__dirname, 'dist/index.html');
+          const fallbackHtml = path.resolve(__dirname, 'dist/404.html');
+          if (fs.existsSync(indexHtml)) {
+            fs.copyFileSync(indexHtml, fallbackHtml);
+          }
+        } catch (e) {
+          console.error('Failed to copy index.html to 404.html:', e);
+        }
+      },
+    },
+  ],
   
   resolve: {
     alias: {

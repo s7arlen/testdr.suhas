@@ -36,9 +36,9 @@ export default function SEO({
       <link rel="canonical" href={canonicalUrl} />
 
       {/* Favicon */}
-      <link rel="icon" type="image/png" href="/favicon.png" />
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}favicon.png`} />
+      <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+      <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}apple-touch-icon.png`} />
 
       {/* Open Graph */}
       <meta property="og:type" content="website" />

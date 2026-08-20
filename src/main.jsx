@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import './index.css';
@@ -89,9 +89,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       {/* HelmetProvider enables dynamic SEO metadata per page */}
       <HelmetProvider>
-        <HashRouter>
+        <BrowserRouter basename="/testdr.suhas">
           <App />
-        </HashRouter>
+        </BrowserRouter>
       </HelmetProvider>
     </ErrorBoundary>
   </React.StrictMode>,
