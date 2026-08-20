@@ -83,16 +83,22 @@ export function DoctorPublications() {
                         <p className="text-body" style={{ margin: 0, fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}>
                           {pub.abstract}
                         </p>
-                        <a 
-                          href={pub.link} 
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-gold)', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', alignSelf: 'flex-start', transition: 'opacity 0.2s', paddingBottom: '0.2rem', borderBottom: '1px solid var(--accent-gold)' }}
-                          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
-                          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-                        >
-                          Read Full Paper <ExternalLink size={16} />
-                        </a>
+                        {pub.link && pub.link !== '#' ? (
+                          <a 
+                            href={pub.link} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-gold)', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', alignSelf: 'flex-start', transition: 'opacity 0.2s', paddingBottom: '0.2rem', borderBottom: '1px solid var(--accent-gold)' }}
+                            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+                          >
+                            Read Full Paper <ExternalLink size={16} />
+                          </a>
+                        ) : (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)', fontWeight: 500, fontSize: '0.85rem', alignSelf: 'flex-start' }}>
+                            Peer-Reviewed Publication &bull; Medical Journal
+                          </span>
+                        )}
                       </div>
                     </motion.div>
                   )}

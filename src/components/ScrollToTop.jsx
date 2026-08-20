@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronUp } from 'lucide-react';
+import { useScrollPosition } from '../hooks';
 
 export default function ScrollToTopButton() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > 500);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const scrollY = useScrollPosition();
+  const visible = scrollY > 500;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

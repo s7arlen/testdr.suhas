@@ -15,7 +15,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
 const GalleryPage = lazy(() => import('./pages/GalleryPage'));
-const BlogPage = lazy(() => import('./components/BlogPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 
 function NotFoundPage() {

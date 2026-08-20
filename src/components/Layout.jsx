@@ -279,16 +279,7 @@ export default function Layout({ children }) {
 
       {/* ─── Footer ───────────────────────────────────────────────── */}
       <footer
-        style={{
-          position: 'sticky',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 0,
-          background: 'var(--bg-secondary)',
-          overflow: 'hidden',
-          paddingBottom: '70px',
-        }}
+        className="site-footer"
         role="contentinfo"
         aria-label="Site footer"
       >

@@ -6,7 +6,6 @@ import Philosophy from '../components/Philosophy';
 import AboutSection from '../components/AboutSection';
 import SpecializationsFilmStrip from '../components/SpecializationsFilmStrip';
 import Timeline from '../components/Timeline';
-import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import GalleryComponent from '../components/Gallery';
 import { PageWrapper } from '../components/common';
@@ -29,7 +28,6 @@ export default function HomePage() {
       <AboutSection />
       <SpecializationsFilmStrip />
       <Timeline />
-      <Testimonials />
       <FAQ />
       <GalleryComponent />
     </PageWrapper>

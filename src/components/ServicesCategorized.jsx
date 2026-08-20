@@ -261,15 +261,6 @@ export default function ServicesCategorized() {
         </div>
 
       </div>
-
-      {/* Embedded CSS for custom styling states like hover arrow animations */}
-      <style>{`
-        .sub-service-card:hover .arrow-badge {
-          transform: translateX(4px);
-          color: var(--accent-gold);
-          border-color: var(--accent-gold);
-        }
-      `}</style>
     </section>
   );
 }

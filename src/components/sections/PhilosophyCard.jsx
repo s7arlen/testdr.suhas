@@ -84,10 +84,12 @@ export function PhilosophyCard({
           backgroundImage: `url(${card.bgImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          opacity: isActive ? (isLightCard ? 0.20 : 0.50) : (isLightCard ? 0.12 : 0.30),
+          opacity: isActive
+            ? (isLightCard ? 0.55 : 0.50)
+            : (isLightCard ? 0.35 : 0.30),
           transition: 'opacity 0.5s ease',
-          mixBlendMode: card.isNavy ? 'luminosity' : 'multiply',
-          filter: card.isNavy ? 'contrast(105%) brightness(95%)' : 'contrast(105%) brightness(98%)',
+          mixBlendMode: card.isNavy ? 'luminosity' : 'normal',
+          filter: card.isNavy ? 'contrast(105%) brightness(95%)' : 'contrast(100%) brightness(100%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -98,10 +100,10 @@ export function PhilosophyCard({
           position: 'absolute',
           inset: 0,
           background: card.isNavy
-            ? (isDark 
-                ? 'linear-gradient(135deg, rgba(9,21,36,0.90) 0%, rgba(14,35,72,0.82) 100%)' 
+            ? (isDark
+                ? 'linear-gradient(135deg, rgba(9,21,36,0.90) 0%, rgba(14,35,72,0.82) 100%)'
                 : 'linear-gradient(135deg, rgba(14,35,72,0.85) 0%, rgba(7,20,42,0.78) 100%)')
-            : 'linear-gradient(135deg, rgba(255,255,255,0.97) 0%, rgba(241,247,253,0.93) 100%)',
+            : 'linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(241,247,253,0.65) 100%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}

@@ -25,7 +25,9 @@ export default function SEO({
   robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
 }) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} | Consultant Surgeon in Bengaluru`;
-  const canonicalUrl = `${siteSettings.siteUrl}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
+  const cleanSiteUrl = (siteSettings.siteUrl || '').replace(/\/$/, '');
+  const cleanPathname = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  const canonicalUrl = `${cleanSiteUrl}${cleanPathname}`;
 
   return (
     <Helmet>
@@ -60,7 +62,7 @@ export default function SEO({
       {/* JSON-LD Structured Data */}
       {schema.map((entry, i) => (
         <script key={i} type="application/ld+json">
-          {JSON.stringify(entry)}
+          {JSON.stringify(entry).replace(/</g, '\\u003c')}
         </script>
       ))}
     </Helmet>

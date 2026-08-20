@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+import { useTheme } from '../hooks';
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -15,11 +17,10 @@ const staggerContainer = {
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40, filter: 'blur(10px)' },
+  hidden: { opacity: 0, y: 30 },
   show: { 
     opacity: 1, 
     y: 0, 
-    filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] } 
   }
 };
@@ -27,22 +28,8 @@ const fadeUp = {
 const heroImage = `${import.meta.env.BASE_URL}images/hero-doctor.png`;
 
 export default function Hero() {
-  const [isDark, setIsDark] = useState(
-    typeof document !== 'undefined'
-      ? document.documentElement.dataset.theme === 'dark'
-      : false
-  );
-
-  useEffect(() => {
-    const sync = () => setIsDark(document.documentElement.dataset.theme === 'dark');
-    sync();
-    const obs = new MutationObserver(sync);
-    obs.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-    return () => obs.disconnect();
-  }, []);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section className="hero-section" style={{ position: 'relative', height: '100vh', minHeight: '600px', display: 'flex', alignItems: 'center', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
@@ -55,9 +42,9 @@ export default function Hero() {
 
         <div className="hero-img-wrapper" style={{ width: '100%', height: '100%', '--hero-image': `url(${heroImage})` }}>
           <motion.img 
-            initial={{ scale: 1.2, opacity: 0, filter: 'blur(20px)' }}
-            animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
-            transition={{ duration: 1.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.4, ease: [0.21, 0.47, 0.32, 0.98] }}
             src={heroImage}
             alt="Dr. Suhas S Kumar - Consultant General & Laparoscopic Surgeon"
             fetchPriority="high"

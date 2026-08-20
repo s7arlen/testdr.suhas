@@ -124,8 +124,22 @@ function MagneticCard({ img, index, onClick }) {
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       style={{ gridColumn: `span ${gridColSpan}`, gridRow: `span ${gridRowSpan}`, minHeight: img.span === 'tall' ? '480px' : '260px' }}
     >
-      <div style={{ width: '100%', height: '100%', perspective: '900px', cursor: 'pointer' }}
-        onMouseEnter={onMouseEnter} onMouseMove={onMouseMove} onMouseLeave={reset} onClick={() => onClick(img)}>
+      <div
+        style={{ width: '100%', height: '100%', perspective: '900px', cursor: 'pointer' }}
+        onMouseEnter={onMouseEnter}
+        onMouseMove={onMouseMove}
+        onMouseLeave={reset}
+        onClick={() => onClick(img)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick(img);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={`View image: ${img.title}`}
+      >
         <div ref={cardRef} style={{
           width: '100%', height: '100%', borderRadius: '28px', overflow: 'hidden',
           position: 'relative', willChange: 'transform', transformStyle: 'preserve-3d',
@@ -188,6 +202,15 @@ function MobileScrollRiver({ onCardClick }) {
           <div
             key={i}
             onClick={() => onCardClick(img)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onCardClick(img);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label={`View image: ${img.title}`}
             style={{
               flexShrink: 0,
               width: '85vw',
@@ -220,11 +243,6 @@ function MobileScrollRiver({ onCardClick }) {
           </div>
         ))}
       </div>
-      <style>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }
