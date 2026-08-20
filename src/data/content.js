@@ -221,21 +221,21 @@ export const categories = [
         tag: 'Breast Care',
         desc: 'Compassionate management of benign breast diseases and advanced surgical oncology.',
         slug: '/services/breast-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/aa31.jpg'
+        image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Thyroid Surgery',
         tag: 'Endocrine Care',
         desc: 'Precise glandular surgery prioritizing nerve preservation and optimal functional outcomes.',
         slug: '/services/thyroid-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/doctor-performing-routine-medical-checkup_23-2149281061.avif'
+        image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Piles, Fissure, Fistula & Pilonidal Sinus',
         tag: 'Anorectal',
         desc: 'Comprehensive evaluation and surgical management for chronic anorectal concerns.',
         slug: '/services/piles-fissure-fistula',
-        image: 'https://surgeonsuhas.com/assets/imgs/Laser-Piles-Treatment-1024x683.jpg'
+        image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Amputations, Excision & Circumcision',
@@ -249,7 +249,7 @@ export const categories = [
         tag: 'Emergency Care',
         desc: 'Urgent, high-precision surgical interventions for trauma injuries and acute abdominal pain.',
         slug: '/services/trauma-emergency-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/doctors-preparing-operation_53876-139517.jpg'
+        image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -264,7 +264,7 @@ export const categories = [
         tag: 'Laser Proctology',
         desc: 'Minimally invasive laser therapy providing quick healing and pain relief for anal fissures.',
         slug: '/services/piles-fissure-fistula',
-        image: 'https://surgeonsuhas.com/assets/imgs/Laser-Piles-Treatment-1024x683.jpg'
+        image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Laser Treatment For Fistula',
@@ -278,14 +278,14 @@ export const categories = [
         tag: 'Laser Proctology',
         desc: 'Precision laser coagulation of hemorrhoids under local or general anesthesia for faster recovery.',
         slug: '/services/piles-fissure-fistula',
-        image: 'https://surgeonsuhas.com/assets/imgs/Laser-Piles-Treatment-1024x683.jpg'
+        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Laser Varicose Veins Surgery',
         tag: 'Vascular Care',
         desc: 'Endovenous laser ablation to treat varicose veins and restore normal leg circulation.',
         slug: '/services/varicose-vein-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/aa34.avif'
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -300,21 +300,21 @@ export const categories = [
         tag: 'Abdominal Wall',
         desc: 'Laparoscopic repair of inguinal, umbilical, and incisional hernias to restore abdominal strength.',
         slug: '/services/hernia-surgery',
-        image: 'https://surgeonsuhas.com/assets/aa1.avif'
+        image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Gall Bladder Surgery',
         tag: 'Hepatobiliary',
         desc: 'Laparoscopic cholecystectomy for gallstones and acute/chronic gallbladder inflammation.',
         slug: '/services/gallbladder-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/aa32.jpg'
+        image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Gastrointestinal Surgery',
         tag: 'Digestive Tract',
         desc: 'Thoughtful laparoscopic care for stomach, appendix, and bowel conditions.',
         slug: '/services/gastrointestinal-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/aa30.jpg'
+        image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80'
       }
     ]
   },
@@ -329,7 +329,7 @@ export const categories = [
         tag: 'Wound Care',
         desc: 'Multidisciplinary treatment of diabetic ulcers to promote healing and control infections.',
         slug: '/services/diabetic-foot-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/4352.jpg'
+        image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Gangrene Toes',
@@ -350,7 +350,7 @@ export const categories = [
         tag: 'Venous Care',
         desc: 'Surgical and compression therapy for ulcers secondary to chronic varicose veins.',
         slug: '/services/varicose-vein-surgery',
-        image: 'https://surgeonsuhas.com/assets/imgs/aa34.avif'
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'
       },
       {
         title: 'Nail Abnormalities',
