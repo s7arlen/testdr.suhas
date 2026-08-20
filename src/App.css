@@ -335,6 +335,44 @@
     left: 0;
     bottom: -3%;
   }
+
+  /* ── Hero center-blend: dissolve the hard left edge of the doctor image ─── */
+  /* A ::before pseudo-element sits above the image and fades from the exact    */
+  /* page background colour (#F7FBFF light / #060B11 dark) to transparent.     */
+  /* This makes the left background naturally bleed into the photograph.        */
+  .hero-img-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -2px;            /* tiny negative offset avoids a 1px subpixel gap  */
+    width: 220px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;            /* sits above the img (z-index 0) but below content */
+    /* Light-mode: fade from #F7FBFF → transparent                             */
+    background: linear-gradient(
+      to right,
+      #F7FBFF        0%,
+      rgba(247,251,255,0.92) 18%,
+      rgba(247,251,255,0.72) 38%,
+      rgba(247,251,255,0.40) 62%,
+      rgba(247,251,255,0.12) 82%,
+      rgba(247,251,255,0)   100%
+    );
+  }
+
+  /* Dark-mode override: fade from #060B11 instead */
+  [data-theme='dark'] .hero-img-wrapper::before {
+    background: linear-gradient(
+      to right,
+      #060B11        0%,
+      rgba(6,11,17,0.92) 18%,
+      rgba(6,11,17,0.72) 38%,
+      rgba(6,11,17,0.40) 62%,
+      rgba(6,11,17,0.12) 82%,
+      rgba(6,11,17,0)   100%
+    );
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
